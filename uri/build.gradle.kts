@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.AbstractKotlinNativeTargetPreset
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
   kotlin("multiplatform")
@@ -36,6 +37,14 @@ kotlin {
       }
     }
 
+    val appleMain by creating {
+      dependsOn(commonMain)
+    }
+
+    val appleTest by creating {
+      dependsOn(commonTest)
+    }
+
     val jsMain by getting
 
     val jvmMain by getting
@@ -50,5 +59,13 @@ kotlin {
         implementation(libs.test.android.robolectric)
       }
     }
+
+    targets
+      .withType(KotlinNativeTarget::class.java)
+      .matching { it.konanTarget.family.isAppleFamily }
+      .configureEach {
+        compilations.getByName("main").defaultSourceSet.dependsOn(appleMain)
+        compilations.getByName("test").defaultSourceSet.dependsOn(appleTest)
+      }
   }
 }
