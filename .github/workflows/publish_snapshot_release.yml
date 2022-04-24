@@ -9,7 +9,7 @@ jobs:
   publish_snapshot:
     strategy:
       matrix:
-        os: [maxOS-latest, windows-latest]
+        os: [macOS-latest, windows-latest]
 
     runs-on: ${{matrix.os}}
 
