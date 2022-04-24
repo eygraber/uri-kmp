@@ -619,6 +619,8 @@ public interface Uri : Comparable<Uri> {
 
     public fun parse(uriString: String): Uri = StringUri(uriString)
 
+    public fun parseOrNull(uriString: String): Uri? = runCatching { StringUri(uriString) }.getOrNull()
+
     /**
      * Creates an opaque Uri from the given components. Encodes the ssp
      * which means this method cannot be used to create hierarchical URIs.

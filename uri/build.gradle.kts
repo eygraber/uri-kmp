@@ -11,7 +11,9 @@ plugins {
 kotlin {
   explicitApi()
 
-  android()
+  android {
+    publishAllLibraryVariants()
+  }
 
   js(IR) {
     browser()
@@ -26,8 +28,6 @@ kotlin {
 
   @Suppress("UNUSED_VARIABLE")
   sourceSets {
-    val androidMain by getting
-
     val commonMain by getting
 
     val commonTest by getting {
@@ -39,5 +39,16 @@ kotlin {
     val jsMain by getting
 
     val jvmMain by getting
+
+    val androidMain by getting {
+      dependsOn(jvmMain)
+    }
+
+    val androidTest by getting {
+      dependencies {
+        implementation(libs.test.android.junit)
+        implementation(libs.test.android.robolectric)
+      }
+    }
   }
 }
