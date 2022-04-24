@@ -13,7 +13,11 @@ env:
 
 jobs:
   publish_artifacts:
-    runs-on: macOS-latest
+    strategy:
+      matrix:
+        os: [macOS-latest, windows-latest]
+
+    runs-on: ${{matrix.os}}
 
     steps:
       - uses: actions/checkout@v3
@@ -29,7 +33,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-
       - name: Generate versions
         uses: HardNorth/github-version-generate@v1.1.2
         with:
@@ -43,53 +46,23 @@ jobs:
           java-version: 11
 
       - name: Publish the artifacts
+        if: matrix.os == 'macOS-latest'
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.ARTIFACT_SIGNING_PRIVATE_KEY }}
-        run: ./release -PVERSION_NAME=${{ env.RELEASE_VERSION }} && ./gradlew closeAndReleaseRepository -PVERSION_NAME=${{ env.RELEASE_VERSION }}
-
-  publish_windows_artifacts:
-    needs: publish_artifacts
-
-    runs-on: windows-latest
-
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.PUSH_PAT }}
-
-      - uses: gradle/wrapper-validation-action@v1.0.4
-
-      - name: Cache gradle
-        uses: actions/cache@v3
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Generate versions
-        uses: HardNorth/github-version-generate@v1.1.2
-        with:
-          version-source: file
-          version-file: ${{ env.VERSION_FILE }}
-          version-file-extraction-pattern: ${{ env.VERSION_EXTRACT_PATTERN }}
-
-      - uses: actions/setup-java@v3.1.1
-        with:
-          distribution: 'zulu'
-          java-version: 11
+        run: ./release -PVERSION_NAME=${{ env.RELEASE_VERSION }}
 
       - name: Publish the Windows artifacts
+        if: matrix.os == 'windows-latest'
         env:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.ARTIFACT_SIGNING_PRIVATE_KEY }}
-        run: ./release_windows.bat -PVERSION_NAME=${{ env.RELEASE_VERSION }} && ./gradlew closeAndReleaseRepository -PVERSION_NAME=${{ env.RELEASE_VERSION }}
+        run: ./release_windows.bat -PVERSION_NAME=${{ env.RELEASE_VERSION }}
 
   publish_release:
-    needs: publish_windows_artifacts
+    needs: publish_artifacts
 
     runs-on: ubuntu-latest
 
