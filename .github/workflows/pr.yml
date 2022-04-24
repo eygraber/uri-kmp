@@ -5,7 +5,8 @@ on:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -49,6 +50,30 @@ jobs:
 
       - name: Validate that gradle property files are all equal
         run: ./gradlew validateGradleProperties
+
+  checkWindows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: gradle/wrapper-validation-action@v1.0.4
+
+      - name: Cache gradle
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - uses: actions/setup-java@v3.1.1
+        with:
+          java-version: 11
+          distribution: 'zulu'
+
+      - name: Run checks
+        run: ./gradlew mingwX64Test detektMingwX64Main detektMingwX86Main
 
 env:
   GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.configureondemand=true -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx4g -Xms128m -XX:MaxPermSize=4096m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=1024m"
