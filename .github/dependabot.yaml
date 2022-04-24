@@ -1,0 +1,14 @@
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      time: "08:00"
+      timezone: "America/New_York"
+    target-branch: "master"
+    commit-message:
+      prefix: "Dependabot"
+    labels:
+      - "dependencies"

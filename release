@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+./gradlew :uri:clean :uri:build :uri:publishAllPublicationsToMavenCentralRepository $@ --no-daemon --no-parallel

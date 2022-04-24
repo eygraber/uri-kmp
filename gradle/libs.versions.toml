@@ -1,0 +1,40 @@
+[versions]
+android-cacheFix-plugin = "2.5.1"
+
+android-plugin = "7.2.0-beta04"
+
+android-sdk-compile = "31"
+android-sdk-min = "24"
+android-sdk-target = "31"
+
+detekt = "1.20.0"
+detektEygraber = "1.0.11"
+
+dokka = "1.6.20"
+
+jdk = "11"
+
+kotlin = "1.6.21"
+
+publish = "0.19.0"
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "android-plugin" }
+android-cacheFix = { id = "org.gradle.android.cache-fix", version.ref = "android-cacheFix-plugin"}
+android-library = { id = "com.android.library", version.ref = "android-plugin" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin"}
+publish = { id = "com.vanniktech.maven.publish", version.ref = "publish" }
+
+[libraries]
+buildscript-android = { module = "com.android.tools.build:gradle", version.ref = "android-plugin" }
+buildscript-androidCacheFix = { module = "gradle.plugin.org.gradle.android:android-cache-fix-gradle-plugin", version.ref = "android-cacheFix-plugin" }
+buildscript-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+buildscript-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
+buildscript-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+buildscript-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publish" }
+
+detekt = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+detektEygraber-formatting = { module = "com.eygraber.detekt.rules:formatting", version.ref = "detektEygraber" }
+detektEygraber-style = { module = "com.eygraber.detekt.rules:style", version.ref = "detektEygraber" }
