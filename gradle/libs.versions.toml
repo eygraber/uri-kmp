@@ -1,7 +1,7 @@
 [versions]
 android-cacheFix-plugin = "2.5.1"
 
-android-plugin = "7.2.0-beta04"
+android-plugin = "7.2.0-rc01"
 
 android-sdk-compile = "31"
 android-sdk-min = "24"
@@ -38,3 +38,6 @@ buildscript-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", v
 detekt = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 detektEygraber-formatting = { module = "com.eygraber.detekt.rules:formatting", version.ref = "detektEygraber" }
 detektEygraber-style = { module = "com.eygraber.detekt.rules:style", version.ref = "detektEygraber" }
+
+test-android-junit = "androidx.test.ext:junit:1.1.4-alpha04"
+test-android-robolectric = "org.robolectric:robolectric:4.7.3"

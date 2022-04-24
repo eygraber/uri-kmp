@@ -233,7 +233,17 @@ public class Url internal constructor(
   }
 
   public companion object {
-    public fun parse(uriString: String): Url = Url(StringUri(uriString))
+    public fun parse(uriString: String): Url = Url(StringUri(uriString)).apply {
+      requireNotNull(uri.scheme) {
+        "Url scheme must not be null"
+      }
+
+      requireNotNull(uri.host) {
+        "Url host must not be null"
+      }
+    }
+
+    public fun parseOrNull(uriString: String): Url? = runCatching { Url(StringUri(uriString)) }.getOrNull()
 
     /**
      * Creates an opaque Url from the given components. Encodes the ssp
