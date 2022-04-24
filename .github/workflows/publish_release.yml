@@ -34,7 +34,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Generate versions
-        uses: HardNorth/github-version-generate@v1.1.1
+        uses: HardNorth/github-version-generate@v1.1.2
         with:
           version-source: file
           version-file: ${{ env.VERSION_FILE }}
@@ -82,7 +82,7 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Generate versions
-        uses: HardNorth/github-version-generate@v1.1.1
+        uses: HardNorth/github-version-generate@v1.1.2
         with:
           version-source: file
           version-file: ${{ env.VERSION_FILE }}
