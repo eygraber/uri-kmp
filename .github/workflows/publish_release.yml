@@ -139,8 +139,8 @@ jobs:
       - name: Prepare next dev version
         id: prepare_next_dev
         run: |
-          sed -i -e 's/${{ env.CURRENT_VERSION }}/${{ env.NEXT_VERSION }}/g' gradle.properties \
-            sed -i -e 's/${{ env.CURRENT_VERSION }}/${{ env.NEXT_VERSION }}/g' build-logic/gradle.properties \
+          sed -i -e 's/${{ env.CURRENT_VERSION }}/${{ env.NEXT_VERSION }}/g' gradle.properties && \
+            sed -i -e 's/${{ env.CURRENT_VERSION }}/${{ env.NEXT_VERSION }}/g' build-logic/gradle.properties && \
             sed -i -E -e 's/uri-kmp(:|\/)${{ env.CURRENT_VERSION }}/uri-kmp\1${{ env.NEXT_VERSION }}/g' README.md
 
       - name: Commit next dev version
