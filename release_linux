@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-
-./gradlew :uri:publishLinuxX64PublicationToMavenCentralRepository $@ --no-daemon --no-parallel
