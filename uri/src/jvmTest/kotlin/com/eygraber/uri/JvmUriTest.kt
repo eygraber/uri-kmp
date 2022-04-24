@@ -1,6 +1,7 @@
 package com.eygraber.uri
 
 import org.junit.Test
+import java.io.File
 import java.net.URI
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -34,5 +35,11 @@ class JvmUriTest {
   fun `URI without scheme returns null when calling toUrlOrNull`() {
     val uri = URI.create("/tmp/1.log")
     assertNull(uri.toUrlOrNull())
+  }
+
+  @Test
+  fun `file toUri correctly initializes the Uri`() {
+    val file = File("/tmp/android.txt")
+    assertEquals(file.toUri().toString(), "file:///tmp/android.txt")
   }
 }
