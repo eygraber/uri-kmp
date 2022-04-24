@@ -23,13 +23,13 @@ import com.eygraber.uri.uris.HierarchicalUri
 import com.eygraber.uri.uris.OpaqueUri
 import com.eygraber.uri.uris.StringUri
 
-public abstract class Uri internal constructor() : Comparable<Uri> {
+public interface Uri : Comparable<Uri> {
   /**
    * Returns true if this URI is hierarchical like "http://google.com".
    * Absolute URIs are hierarchical if the scheme-specific part starts with
    * a '/'. Relative URIs are always hierarchical.
    */
-  public abstract val isHierarchical: Boolean
+  public val isHierarchical: Boolean
 
   /**
    * Returns true if this URI is opaque like "mailto:nobody@google.com". The
@@ -43,7 +43,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * @return true if this URI is relative, false if it's absolute
    */
-  public abstract val isRelative: Boolean
+  public val isRelative: Boolean
 
   /**
    * Returns true if this URI is absolute, i.e.&nbsp;if it contains an
@@ -58,7 +58,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * @return the scheme or null if this is a relative URI
    */
-  public abstract val scheme: String?
+  public val scheme: String?
 
   /**
    * Gets the scheme-specific part of this URI, i.e.&nbsp;everything between
@@ -69,7 +69,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * @return the decoded scheme-specific-part
    */
-  public abstract val schemeSpecificPart: String?
+  public val schemeSpecificPart: String?
 
   /**
    * Gets the scheme-specific part of this URI, i.e.&nbsp;everything between
@@ -81,7 +81,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * @return the encoded scheme-specific-part
    */
-  public abstract val encodedSchemeSpecificPart: String?
+  public val encodedSchemeSpecificPart: String?
 
   /**
    * Gets the decoded authority part of this URI. For
@@ -92,7 +92,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * @return the authority for this URI or null if not present
    */
-  public abstract val authority: String?
+  public val authority: String?
 
   /**
    * Gets the encoded authority part of this URI. For
@@ -103,7 +103,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * @return the authority for this URI or null if not present
    */
-  public abstract val encodedAuthority: String?
+  public val encodedAuthority: String?
 
   /**
    * Gets the decoded user information from the authority.
@@ -112,7 +112,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * @return the user info for this URI or null if not present
    */
-  public abstract val userInfo: String?
+  public val userInfo: String?
 
   /**
    * Gets the encoded user information from the authority.
@@ -121,7 +121,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * @return the user info for this URI or null if not present
    */
-  public abstract val encodedUserInfo: String?
+  public val encodedUserInfo: String?
 
   /**
    * Gets the encoded host from the authority for this URI. For example,
@@ -130,7 +130,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * @return the host for this URI or null if not present
    */
-  public abstract val host: String?
+  public val host: String?
 
   /**
    * Gets the port from the authority for this URI. For example,
@@ -138,7 +138,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * @return the port for this URI or -1 if invalid or not present
    */
-  public abstract val port: Int
+  public val port: Int
 
   /**
    * Gets the decoded path.
@@ -146,7 +146,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    * @return the decoded path, or null if this is not a hierarchical URI
    * (like "mailto:nobody@google.com") or the URI is invalid
    */
-  public abstract val path: String?
+  public val path: String?
 
   /**
    * Gets the encoded path.
@@ -154,7 +154,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    * @return the encoded path, or null if this is not a hierarchical URI
    * (like "mailto:nobody@google.com") or the URI is invalid
    */
-  public abstract val encodedPath: String?
+  public val encodedPath: String?
 
   /**
    * Gets the decoded query component from this URI. The query comes after
@@ -164,7 +164,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * @return the decoded query or null if there isn't one
    */
-  public abstract val query: String?
+  public val query: String?
 
   /**
    * Gets the encoded query component from this URI. The query comes after
@@ -174,35 +174,35 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * @return the encoded query or null if there isn't one
    */
-  public abstract val encodedQuery: String?
+  public val encodedQuery: String?
 
   /**
    * Gets the decoded fragment part of this URI, everything after the '#'.
    *
    * @return the decoded fragment or null if there isn't one
    */
-  public abstract val fragment: String?
+  public val fragment: String?
 
   /**
    * Gets the encoded fragment part of this URI, everything after the '#'.
    *
    * @return the encoded fragment or null if there isn't one
    */
-  public abstract val encodedFragment: String?
+  public val encodedFragment: String?
 
   /**
    * Gets the decoded path segments.
    *
    * @return decoded path segments, each without a leading or trailing '/'
    */
-  public abstract val pathSegments: List<String>
+  public val pathSegments: List<String>
 
   /**
    * Gets the decoded last segment in the path.
    *
    * @return the decoded last segment or null if the path is empty
    */
-  public abstract val lastPathSegment: String?
+  public val lastPathSegment: String?
 
   /**
    * Returns a set of the unique names of all query parameters. Iterating
@@ -364,11 +364,6 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    * "http://www.android.com"
    *
    *
-   * All URIs received from outside Android (such as user input,
-   * or external sources like Bluetooth, NFC, or the Internet) should
-   * be normalized before they are used to create an Intent.
-   *
-   *
    * This method does *not* validate bad URI's,
    * or 'fix' poorly formatted URI's - so do not use it for input validation.
    * A Uri will always be returned, even if the Uri is badly formatted to
@@ -382,29 +377,12 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
     return if(scheme == lowerScheme) this else buildUpon().scheme(lowerScheme).build()
   }
 
-  /**
-   * Compares this Uri to another object for equality. Returns true if the
-   * encoded string representations of this Uri and the given Uri are
-   * equal. Case counts. Paths are not normalized. If one Uri specifies a
-   * default port explicitly and the other leaves it implicit, they will not
-   * be considered equal.
-   */
-  override fun equals(other: Any?): Boolean = other is Uri && toString() == other.toString()
-
-  /**
-   * Hashes the encoded string represention of this Uri consistently with
-   * [.equals].
-   */
-  override fun hashCode(): Int = toString().hashCode()
-
   override fun compareTo(other: Uri): Int = toString().compareTo(other.toString())
-
-  public abstract override fun toString(): String
 
   /**
    * Constructs a new builder, copying the attributes from this Uri.
    */
-  public abstract fun buildUpon(): Builder
+  public fun buildUpon(): com.eygraber.uri.Builder
 
   /**
    * Helper class for building or manipulating URI references. Not safe for
@@ -426,7 +404,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
    *
    * Use [Uri.buildUpon] to obtain a builder representing an existing URI.
    */
-  public class Builder {
+  public class Builder : com.eygraber.uri.Builder {
     private var scheme: String? = null
     private var opaquePart: Part? = null
     private var authority: Part? = null
@@ -434,12 +412,15 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
     private var query: Part? = null
     private var fragment: Part? = null
 
+    internal fun isSchemeSet(): Boolean = scheme != null
+    internal fun isAuthoritySet(): Boolean = authority != null
+
     /**
      * Sets the scheme.
      *
      * @param scheme name or `null` if this is a relative Uri
      */
-    public fun scheme(scheme: String?): Builder = apply {
+    override fun scheme(scheme: String?): Builder = apply {
       this.scheme = scheme
     }
 
@@ -452,7 +433,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
      *
      * @param opaquePart decoded opaque part
      */
-    public fun opaquePart(opaquePart: String?): Builder =
+    override fun opaquePart(opaquePart: String?): Builder =
       opaquePart(Part.fromDecoded(opaquePart))
 
     /**
@@ -460,7 +441,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
      *
      * @param opaquePart encoded opaque part
      */
-    public fun encodedOpaquePart(opaquePart: String?): Builder =
+    override fun encodedOpaquePart(opaquePart: String?): Builder =
       opaquePart(Part.fromEncoded(opaquePart))
 
     internal fun authority(authority: Part?): Builder = apply {
@@ -472,13 +453,13 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
     /**
      * Encodes and sets the authority.
      */
-    public fun authority(authority: String?): Builder =
+    override fun authority(authority: String?): Builder =
       authority(Part.fromDecoded(authority))
 
     /**
      * Sets the previously encoded authority.
      */
-    public fun encodedAuthority(authority: String?): Builder =
+    override fun encodedAuthority(authority: String?): Builder =
       authority(Part.fromEncoded(authority))
 
     internal fun path(path: PathPart?): Builder = apply {
@@ -496,7 +477,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
      * you specify a scheme and/or authority, the builder will prepend the
      * given path with a '/'.
      */
-    public fun path(path: String?): Builder =
+    override fun path(path: String?): Builder =
       path(PathPart.fromDecoded(path))
 
     /**
@@ -507,20 +488,20 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
      * you specify a scheme and/or authority, the builder will prepend the
      * given path with a '/'.
      */
-    public fun encodedPath(path: String?): Builder =
+    override fun encodedPath(path: String?): Builder =
       path(PathPart.fromEncoded(path))
 
     /**
      * Encodes the given segment and appends it to the path.
      */
-    public fun appendPath(newSegment: String?): Builder =
-      path(PathPart.appendDecodedSegment(path, newSegment!!))
+    override fun appendPath(newSegment: String): Builder =
+      path(PathPart.appendDecodedSegment(path, newSegment))
 
     /**
      * Appends the given segment to the path.
      */
-    public fun appendEncodedPath(newSegment: String?): Builder =
-      path(PathPart.appendEncodedSegment(path, newSegment!!))
+    override fun appendEncodedPath(newSegment: String): Builder =
+      path(PathPart.appendEncodedSegment(path, newSegment))
 
     internal fun query(query: Part?): Builder = apply {
       // This URI will be hierarchical.
@@ -531,13 +512,13 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
     /**
      * Encodes and sets the query.
      */
-    public fun query(query: String?): Builder =
+    override fun query(query: String?): Builder =
       query(Part.fromDecoded(query))
 
     /**
      * Sets the previously encoded query.
      */
-    public fun encodedQuery(query: String?): Builder =
+    override fun encodedQuery(query: String?): Builder =
       query(Part.fromEncoded(query))
 
     internal fun fragment(fragment: Part?): Builder = apply {
@@ -547,13 +528,13 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
     /**
      * Encodes and sets the fragment.
      */
-    public fun fragment(fragment: String?): Builder =
+    override fun fragment(fragment: String?): Builder =
       fragment(Part.fromDecoded(fragment))
 
     /**
      * Sets the previously encoded fragment.
      */
-    public fun encodedFragment(fragment: String?): Builder =
+    override fun encodedFragment(fragment: String?): Builder =
       fragment(Part.fromEncoded(fragment))
 
     /**
@@ -563,7 +544,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
      * @param key which will be encoded
      * @param value which will be encoded
      */
-    public fun appendQueryParameter(key: String, value: String?): Builder = apply {
+    override fun appendQueryParameter(key: String, value: String?): Builder = apply {
       // This URI will be hierarchical.
       opaquePart = null
       val encodedKey = UriCodec.encode(key, null)
@@ -583,7 +564,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
     /**
      * Clears the the previously set query.
      */
-    public fun clearQuery(): Builder =
+    override fun clearQuery(): Builder =
       query(null as Part?)
 
     /**
@@ -592,7 +573,7 @@ public abstract class Uri internal constructor() : Comparable<Uri> {
      * @throws UnsupportedOperationException if the URI is opaque and the
      * scheme is null
      */
-    public fun build(): Uri =
+    override fun build(): Uri =
       when(val opaquePart = opaquePart) {
         null -> {
           // Hierarchical URIs should not return null for getPath().
