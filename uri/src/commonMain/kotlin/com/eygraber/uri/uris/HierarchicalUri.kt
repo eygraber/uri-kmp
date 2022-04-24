@@ -17,6 +17,7 @@
 
 package com.eygraber.uri.uris
 
+import com.eygraber.uri.Uri
 import com.eygraber.uri.parts.Part
 import com.eygraber.uri.parts.PathPart
 
@@ -117,10 +118,25 @@ internal class HierarchicalUri internal constructor(
     }
   }
 
+  /**
+   * Compares this Uri to another object for equality. Returns true if the
+   * encoded string representations of this Uri and the given Uri are
+   * equal. Case counts. Paths are not normalized. If one Uri specifies a
+   * default port explicitly and the other leaves it implicit, they will not
+   * be considered equal.
+   */
+  override fun equals(other: Any?): Boolean = other is Uri && toString() == other.toString()
+
+  /**
+   * Hashes the encoded string representation of this Uri consistently with
+   * [.equals].
+   */
+  override fun hashCode(): Int = toString().hashCode()
+
   override fun toString(): String = uriString
 
-  override fun buildUpon(): Builder =
-    Builder()
+  override fun buildUpon(): Uri.Builder =
+    Uri.Builder()
       .scheme(scheme)
       .authority(authorityPart)
       .path(pathPart)

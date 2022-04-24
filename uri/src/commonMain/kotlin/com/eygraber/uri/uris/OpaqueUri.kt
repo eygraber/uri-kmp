@@ -24,8 +24,7 @@ internal class OpaqueUri internal constructor(
   override val scheme: String?,
   private val ssp: Part,
   _fragmentPart: Part?
-) : Uri() {
-
+) : Uri {
   private val fragmentPart: Part = _fragmentPart ?: Part.NULL
 
   override val isHierarchical: Boolean = false
@@ -67,10 +66,25 @@ internal class OpaqueUri internal constructor(
     }
   }
 
+  /**
+   * Compares this Uri to another object for equality. Returns true if the
+   * encoded string representations of this Uri and the given Uri are
+   * equal. Case counts. Paths are not normalized. If one Uri specifies a
+   * default port explicitly and the other leaves it implicit, they will not
+   * be considered equal.
+   */
+  override fun equals(other: Any?): Boolean = other is Uri && toString() == other.toString()
+
+  /**
+   * Hashes the encoded string representation of this Uri consistently with
+   * [.equals].
+   */
+  override fun hashCode(): Int = toString().hashCode()
+
   override fun toString(): String = cachedString
 
-  override fun buildUpon(): Builder =
-    Builder()
+  override fun buildUpon(): Uri.Builder =
+    Uri.Builder()
       .scheme(scheme)
       .opaquePart(ssp)
       .fragment(fragmentPart)

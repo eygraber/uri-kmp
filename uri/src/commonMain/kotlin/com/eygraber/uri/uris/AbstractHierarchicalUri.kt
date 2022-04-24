@@ -25,7 +25,7 @@ import com.eygraber.uri.parts.Part
 /**
  * Support for hierarchical URIs.
  */
-internal abstract class AbstractHierarchicalUri : Uri() {
+internal abstract class AbstractHierarchicalUri : Uri {
   override val lastPathSegment: String? by lazy {
     // TODO: If we haven't parsed all of the segments already, just
     // grab the last one directly so we only allocate one string.
