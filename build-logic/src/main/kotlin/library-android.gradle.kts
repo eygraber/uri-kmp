@@ -51,5 +51,12 @@ android {
       isIncludeAndroidResources = true
     }
   }
-}
 
+  publishing {
+    multipleVariants {
+      allVariants()
+      withJavadocJar()
+      withSourcesJar()
+    }
+  }
+}
