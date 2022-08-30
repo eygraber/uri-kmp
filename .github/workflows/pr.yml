@@ -26,7 +26,7 @@ jobs:
           distribution: 'zulu'
 
       - name: Run checks
-        run: ./gradlew check detektJvmMain detektJsMain detektMetadataMain
+        run: ./gradlew check detektJvmMain detektJsLegacyMain detektMetadataMain
 
   validate_gradle_properties_match:
     runs-on: ubuntu-latest

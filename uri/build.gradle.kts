@@ -16,7 +16,7 @@ kotlin {
     publishAllLibraryVariants()
   }
 
-  js(IR) {
+  js(BOTH) {
     browser()
     nodejs()
   }

@@ -218,16 +218,10 @@ internal class StringUri(
         // end of the string.
         var end = ssi + 3
         while(end < length) {
-          when(uriString[end]) {
-            '/', // Start of path
-            '\\', // Start of path
-            // Per http://url.spec.whatwg.org/#host-state, the \ character
-            // is treated as if it were a / character when encountered in a
-            // host
-            '?', // Start of query
-            '#' // Start of fragment
-            -> break
-          }
+          val c = uriString[end]
+          // for some reason JS Legacy doesn't like a when here
+          if(c == '/' || c == '\\') break
+          if(c == '?' || c == '#') break
           end++
         }
         uriString.substring(ssi + 3, end)
@@ -254,18 +248,10 @@ internal class StringUri(
         // Skip over authority to path.
         pathStart = ssi + 3
         while(pathStart < length) {
-          when(uriString[pathStart]) {
-            '?', // Start of query
-            '#' // Start of fragment
-            -> return "" // Empty path.
-
-            '/', // Start of path!
-            '\\' // Start of path!
-            // Per http://url.spec.whatwg.org/#host-state, the \ character
-            // is treated as if it were a / character when encountered in a
-            // host
-            -> break
-          }
+          val c = uriString[pathStart]
+          // for some reason JS Legacy doesn't like a when here
+          if(c == '?' || c == '#') return ""
+          if(c == '/' || c == '\\') break
           pathStart++
         }
       }
@@ -277,11 +263,9 @@ internal class StringUri(
       // Find end of path.
       var pathEnd = pathStart
       while(pathEnd < length) {
-        when(uriString[pathEnd]) {
-          '?', // Start of query
-          '#' // Start of fragment
-          -> break
-        }
+        val c = uriString[pathEnd]
+        // for some reason JS Legacy doesn't like a when here
+        if(c == '?' || c == '#') break
         pathEnd++
       }
       return uriString.substring(pathStart, pathEnd)
