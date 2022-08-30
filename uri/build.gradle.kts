@@ -42,6 +42,7 @@ kotlin {
     }
 
     val appleTest by creating {
+      dependsOn(appleMain)
       dependsOn(commonTest)
     }
 
