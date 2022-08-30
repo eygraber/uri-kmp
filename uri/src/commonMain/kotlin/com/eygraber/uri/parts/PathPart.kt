@@ -138,7 +138,7 @@ internal class PathPart internal constructor(encoded: String?, decoded: String?)
      */
     fun makeAbsolute(oldPart: PathPart): PathPart {
       // We don't care which version we use, and we don't want to force
-      // unneccessary encoding/decoding.
+      // unnecessary encoding/decoding.
       val oldPath = if(oldPart.wasEncodedCached) oldPart.encoded else oldPart.decoded
       if(oldPath == null || oldPath.isEmpty() || oldPath.startsWith("/")) {
         return oldPart
