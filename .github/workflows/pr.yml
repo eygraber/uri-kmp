@@ -8,22 +8,19 @@ jobs:
     runs-on: macOS-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
 
-      - uses: gradle/wrapper-validation-action@v1.0.4
-
-      - name: Cache gradle
-        uses: actions/cache@v3
+      - uses: actions/setup-java@2c7a4878f5d120bd643426d54ae1209b29cc01a3
         with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - uses: actions/setup-java@v3.4.1
-        with:
-          java-version: 11
           distribution: 'zulu'
+          java-version: 11
+
+      - uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@356abb47e7664b5505e25d7997a5a522a17c62d9
+        with:
+          gradle-version: wrapper
 
       - name: Run checks
         run: ./gradlew check detektJvmMain detektJsLegacyMain detektMetadataMain
@@ -31,22 +28,19 @@ jobs:
   validate_gradle_properties_match:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
 
-      - uses: gradle/wrapper-validation-action@v1.0.4
-
-      - name: Cache gradle
-        uses: actions/cache@v3
+      - uses: actions/setup-java@2c7a4878f5d120bd643426d54ae1209b29cc01a3
         with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - uses: actions/setup-java@v3.4.1
-        with:
-          java-version: 11
           distribution: 'zulu'
+          java-version: 11
+
+      - uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@356abb47e7664b5505e25d7997a5a522a17c62d9
+        with:
+          gradle-version: wrapper
 
       - name: Validate that gradle property files are all equal
         run: ./gradlew validateGradleProperties
@@ -55,22 +49,19 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
 
-      - uses: gradle/wrapper-validation-action@v1.0.4
-
-      - name: Cache gradle
-        uses: actions/cache@v3
+      - uses: actions/setup-java@2c7a4878f5d120bd643426d54ae1209b29cc01a3
         with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - uses: actions/setup-java@v3.4.1
-        with:
-          java-version: 11
           distribution: 'zulu'
+          java-version: 11
+
+      - uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@356abb47e7664b5505e25d7997a5a522a17c62d9
+        with:
+          gradle-version: wrapper
 
       - name: Run checks
         run: ./gradlew mingwX64Test detektMingwX64Main detektMingwX86Main
