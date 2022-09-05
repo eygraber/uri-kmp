@@ -57,7 +57,8 @@ jobs:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.ARTIFACT_SIGNING_PRIVATE_KEY }}
-        run: ./gradlew :uri:publishMingwX64PublicationToMavenCentralRepository :uri:publishMingwX86PublicationToMavenCentralRepository -PVERSION_NAME=${{ env.RELEASE_VERSION }} -PSONATYPE_AUTOMATIC_RELEASE=true
+        run: gradlew.bat :uri:publishMingwX64PublicationToMavenCentralRepository :uri:publishMingwX86PublicationToMavenCentralRepository -PVERSION_NAME=${{ env.RELEASE_VERSION }} -PSONATYPE_AUTOMATIC_RELEASE=true
+        shell: cmd
 
   publish_release:
     needs: publish_artifacts
