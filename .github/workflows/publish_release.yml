@@ -13,11 +13,7 @@ env:
 
 jobs:
   publish_artifacts:
-    strategy:
-      matrix:
-        os: [macOS-latest, windows-latest]
-
-    runs-on: ${{matrix.os}}
+    runs-on: macOS-latest
 
     steps:
       - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
@@ -51,14 +47,7 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.ARTIFACT_SIGNING_PRIVATE_KEY }}
         run: ./gradlew :uri:publishAllPublicationsToMavenCentralRepository -PVERSION_NAME=${{ env.RELEASE_VERSION }}
 
-      - name: Publish the Windows artifacts
-        if: matrix.os == 'windows-latest'
-        env:
-          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
-          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
-          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.ARTIFACT_SIGNING_PRIVATE_KEY }}
-        run: gradlew.bat :uri:publishMingwX64PublicationToMavenCentralRepository :uri:publishMingwX86PublicationToMavenCentralRepository -PVERSION_NAME=${{ env.RELEASE_VERSION }}
-        shell: cmd
+
 
   publish_release:
     needs: publish_artifacts
