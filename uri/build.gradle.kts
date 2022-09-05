@@ -9,6 +9,10 @@ plugins {
   id("publish")
 }
 
+android {
+  namespace = "com.eygraber.uri"
+}
+
 kotlin {
   explicitApi()
 
