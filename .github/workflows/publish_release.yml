@@ -49,7 +49,7 @@ jobs:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.ARTIFACT_SIGNING_PRIVATE_KEY }}
-        run: ./gradlew :uri:publishAllPublicationsToMavenCentralRepository -PVERSION_NAME=${{ env.RELEASE_VERSION }}
+        run: ./gradlew :uri:publishAllPublicationsToMavenCentralRepository -PVERSION_NAME=${{ env.RELEASE_VERSION }} -PSONATYPE_AUTOMATIC_RELEASE=true
 
       - name: Publish the Windows artifacts
         if: matrix.os == 'windows-latest'
@@ -57,7 +57,7 @@ jobs:
           ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
           ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.ARTIFACT_SIGNING_PRIVATE_KEY }}
-        run: gradlew :uri:publishMingwX64PublicationToMavenCentralRepository :uri:publishMingwX86PublicationToMavenCentralRepository -PVERSION_NAME=${{ env.RELEASE_VERSION }}
+        run: gradlew :uri:publishMingwX64PublicationToMavenCentralRepository :uri:publishMingwX86PublicationToMavenCentralRepository -PVERSION_NAME=${{ env.RELEASE_VERSION }} -PSONATYPE_AUTOMATIC_RELEASE=true
 
   publish_release:
     needs: publish_artifacts

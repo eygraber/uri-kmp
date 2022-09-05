@@ -16,7 +16,7 @@ jdk = "11"
 
 kotlin = "1.7.10"
 
-publish = "0.21.0"
+publish = "0.22.0-SNAPSHOT"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-plugin" }
