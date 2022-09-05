@@ -130,8 +130,7 @@ jobs:
         run: |
           sed -i -e 's/${{ env.CURRENT_VERSION }}/${{ env.NEXT_VERSION }}/g' gradle.properties && \
             sed -i -e 's/${{ env.CURRENT_VERSION }}/${{ env.NEXT_VERSION }}/g' build-logic/gradle.properties && \
-            sed -i -E -e 's/uri-kmp(:|\/)${{ env.CURRENT_VERSION }}/uri-kmp\1${{ env.NEXT_VERSION }}/g' README.md && \
-            sed -i -E -e 's/-SNAPSHOT//g' README.md
+            sed -i -E -e 's/uri-kmp(:|\/)[0-9]+\.[0-9]+\.[0-9]+\./uri-kmp\1${{ env.RELEASE_VERSION }}/g' README.md
 
       - name: Commit next dev version
         id: commit_next_dev
