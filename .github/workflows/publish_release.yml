@@ -33,7 +33,7 @@ jobs:
           gradle-version: wrapper
 
       - name: Generate versions
-        uses: HardNorth/github-version-generate@996e8c5b6ec9cd3e825caf5502d5176238f1109e
+        uses: HardNorth/github-version-generate@91998704a2b37be20604933d9c989ebade9c5f89
         with:
           version-source: file
           version-file: ${{ env.VERSION_FILE }}
@@ -71,7 +71,7 @@ jobs:
           gradle-version: wrapper
 
       - name: Generate versions
-        uses: HardNorth/github-version-generate@996e8c5b6ec9cd3e825caf5502d5176238f1109e
+        uses: HardNorth/github-version-generate@91998704a2b37be20604933d9c989ebade9c5f89
         with:
           version-source: file
           version-file: ${{ env.VERSION_FILE }}
