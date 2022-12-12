@@ -100,7 +100,7 @@ jobs:
 
       - name: Create release
         id: create_release
-        uses: ncipollo/release-action@4c75f0f2e4ae5f3c807cf0904605408e319dcaac
+        uses: ncipollo/release-action@a2e71bdd4e7dab70ca26a852f29600c98b33153e
         with:
           body: ${{ steps.build_changelog.outputs.changelog }}
           commit: release
