@@ -20,7 +20,7 @@ kotlin {
     publishAllLibraryVariants()
   }
 
-  js(BOTH) {
+  js(IR) {
     browser()
     nodejs()
   }
@@ -58,7 +58,7 @@ kotlin {
       dependsOn(jvmMain)
     }
 
-    val androidTest by getting {
+    val androidUnitTest by getting {
       dependencies {
         implementation(libs.test.android.junit)
         implementation(libs.test.android.robolectric)

@@ -58,3 +58,5 @@ dependencyResolutionManagement {
     }
   }
 }
+
+rootProject.name = "uri-kmp-build-logic"

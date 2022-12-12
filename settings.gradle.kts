@@ -52,7 +52,7 @@ dependencyResolutionManagement {
 }
 
 plugins {
-  id("com.gradle.enterprise") version "3.9"
+  id("com.gradle.enterprise") version "3.11.4"
 }
 
 rootProject.name = "uri-kmp"
