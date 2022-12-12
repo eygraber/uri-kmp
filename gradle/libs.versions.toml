@@ -1,22 +1,22 @@
 [versions]
-android-cacheFix-plugin = "2.5.6"
+android-cacheFix-plugin = "2.6.0"
 
-android-plugin = "7.4.0-alpha09"
+android-plugin = "8.0.0-alpha09"
 
-android-sdk-compile = "31"
+android-sdk-compile = "33"
 android-sdk-min = "21"
-android-sdk-target = "31"
+android-sdk-target = "33"
 
-detekt = "1.21.0"
+detekt = "1.22.0"
 detektEygraber = "1.0.11"
 
-dokka = "1.7.10"
+dokka = "1.7.20"
 
 jdk = "11"
 
-kotlin = "1.7.10"
+kotlin = "1.8.0-RC"
 
-publish = "0.22.0-SNAPSHOT"
+publish = "0.22.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-plugin" }
@@ -39,5 +39,5 @@ detekt = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref
 detektEygraber-formatting = { module = "com.eygraber.detekt.rules:formatting", version.ref = "detektEygraber" }
 detektEygraber-style = { module = "com.eygraber.detekt.rules:style", version.ref = "detektEygraber" }
 
-test-android-junit = "androidx.test.ext:junit:1.1.4-alpha07"
-test-android-robolectric = "org.robolectric:robolectric:4.8.2"
+test-android-junit = "androidx.test.ext:junit:1.1.4"
+test-android-robolectric = "org.robolectric:robolectric:4.9"

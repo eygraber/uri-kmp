@@ -32,9 +32,7 @@ internal open class Part internal constructor(encoded: String?, decoded: String?
 
   private class EmptyPart(value: String?) : Part(value, value) {
     init {
-      if(value != null && value.isNotEmpty()) {
-        throw IllegalArgumentException("Expected empty value, got: $value")
-      }
+      require(value.isNullOrEmpty()) { "Expected empty value, got: $value" }
     }
 
     override val isEmpty = true

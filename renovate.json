@@ -2,7 +2,7 @@
   "extends": [
     "config:base"
   ],
-  "enabledManagers": ["gradle"],
+  "enabledManagers": ["gradle", "gradle-wrapper", "github-actions"],
   "labels": ["dependencies"],
   "prHourlyLimit": 3
 }

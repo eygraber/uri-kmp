@@ -129,7 +129,9 @@ internal class PathPart internal constructor(encoded: String?, decoded: String?)
       return if(encoded.isEmpty()) {
         EMPTY
       }
-      else PathPart(encoded, decoded)
+      else {
+        PathPart(encoded, decoded)
+      }
     }
 
     /**

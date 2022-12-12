@@ -16,7 +16,6 @@ tasks.withType<JavaCompile> {
 
 kotlin {
   jvmToolchain {
-    require(this is JavaToolchainSpec)
     languageVersion.set(JavaLanguageVersion.of(libs.versions.jdk.get()))
     vendor.set(JvmVendorSpec.AZUL)
   }
