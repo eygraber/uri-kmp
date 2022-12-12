@@ -122,7 +122,7 @@ jobs:
 
       - name: Commit next dev version
         id: commit_next_dev
-        uses: EndBug/add-and-commit@61a88be553afe4206585b31aa72387c64295d08b
+        uses: EndBug/add-and-commit@ae3f4916c47ce9a336105b656e9eb195541ce18e
         with:
           add: "['gradle.properties', 'build-logic/gradle.properties', 'README.md']"
           default_author: github_actions
