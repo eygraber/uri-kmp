@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-java@v3.9.0
         with:
           distribution: 'zulu'
-          java-version: 11
+          java-version-file: .ci-java-version
 
       - uses: gradle/wrapper-validation-action@v1.0.5
 
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/setup-java@v3.9.0
         with:
           distribution: 'zulu'
-          java-version: 11
+          java-version-file: .ci-java-version
 
       - uses: gradle/wrapper-validation-action@v1.0.5
 
@@ -47,4 +47,4 @@ jobs:
         run: ./gradlew mingwX64Test detektMingwX64Main detektMingwX86Main
 
 env:
-  GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.configureondemand=false -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx4g -Xms128m -XX:MaxPermSize=4096m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=1024m"
+  GRADLE_OPTS: -Dorg.gradle.daemon=false -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx4g -Xms512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=1024m"
