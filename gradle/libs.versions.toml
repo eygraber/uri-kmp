@@ -39,5 +39,5 @@ detekt = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref
 detektEygraber-formatting = { module = "com.eygraber.detekt.rules:formatting", version.ref = "detektEygraber" }
 detektEygraber-style = { module = "com.eygraber.detekt.rules:style", version.ref = "detektEygraber" }
 
-test-android-junit = "androidx.test.ext:junit:1.1.4"
+test-android-junit = "androidx.test.ext:junit:1.1.5"
 test-android-robolectric = "org.robolectric:robolectric:4.9.2"
