@@ -1,11 +1,13 @@
 [versions]
 android-cacheFix-plugin = "2.6.2"
 
-android-plugin = "8.0.0-alpha10"
+android-plugin = "8.0.0-beta01"
 
 android-sdk-compile = "33"
 android-sdk-min = "21"
 android-sdk-target = "33"
+
+conventions = "0.0.29"
 
 detekt = "1.22.0"
 detektEygraber = "1.0.11"
@@ -16,16 +18,10 @@ jdk = "11"
 
 kotlin = "1.8.0"
 
-publish = "0.22.0"
+publish = "0.23.2"
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "android-plugin" }
-android-cacheFix = { id = "org.gradle.android.cache-fix", version.ref = "android-cacheFix-plugin"}
-android-library = { id = "com.android.library", version.ref = "android-plugin" }
-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin"}
-publish = { id = "com.vanniktech.maven.publish", version.ref = "publish" }
+conventions = { id = "com.eygraber.conventions", version.ref = "conventions" }
 
 [libraries]
 buildscript-android = { module = "com.android.tools.build:gradle", version.ref = "android-plugin" }
