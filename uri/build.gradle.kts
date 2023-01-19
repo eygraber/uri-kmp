@@ -1,12 +1,11 @@
+import com.eygraber.conventions.kotlin.kmp.androidUnitTest
 import org.jetbrains.kotlin.gradle.plugin.mpp.AbstractKotlinNativeTargetPreset
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
-  kotlin("multiplatform")
-  id("library-android")
-  id("library")
-  id("detekt")
-  id("publish")
+  id("com.eygraber.conventions-kotlin-multiplatform")
+  id("com.eygraber.conventions-android-library")
+  id("com.eygraber.conventions-detekt")
+  id("com.eygraber.conventions-publish-github")
 }
 
 android {
@@ -16,61 +15,33 @@ android {
 kotlin {
   explicitApi()
 
-  android {
-    publishAllLibraryVariants()
-  }
-
-  js(IR) {
-    browser()
-    nodejs()
-  }
-
-  jvm()
+  kmpTargets(
+    project = project,
+    android = true,
+    jvm = true,
+    ios = true,
+    macos = true,
+    js = true
+  )
 
   presets.withType<AbstractKotlinNativeTargetPreset<*>>().forEach {
-    targetFromPreset(it)
+    if(!it.konanTarget.family.isAppleFamily) {
+      targetFromPreset(it)
+    }
   }
 
-  @Suppress("UNUSED_VARIABLE")
   sourceSets {
-    val commonMain by getting
-
-    val commonTest by getting {
+    commonTest {
       dependencies {
         implementation(kotlin("test"))
       }
     }
 
-    val appleMain by creating {
-      dependsOn(commonMain)
-    }
-
-    val appleTest by creating {
-      dependsOn(appleMain)
-      dependsOn(commonTest)
-    }
-
-    val jsMain by getting
-
-    val jvmMain by getting
-
-    val androidMain by getting {
-      dependsOn(jvmMain)
-    }
-
-    val androidUnitTest by getting {
+    androidUnitTest {
       dependencies {
         implementation(libs.test.android.junit)
         implementation(libs.test.android.robolectric)
       }
     }
-
-    targets
-      .withType(KotlinNativeTarget::class.java)
-      .matching { it.konanTarget.family.isAppleFamily }
-      .configureEach {
-        compilations.getByName("main").defaultSourceSet.dependsOn(appleMain)
-        compilations.getByName("test").defaultSourceSet.dependsOn(appleTest)
-      }
   }
 }
