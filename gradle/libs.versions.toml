@@ -18,7 +18,7 @@ jdk = "11"
 
 kotlin = "1.8.10"
 
-publish = "0.25.0"
+publish = "0.25.1"
 
 [plugins]
 conventions = { id = "com.eygraber.conventions", version.ref = "conventions" }
