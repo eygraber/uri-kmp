@@ -44,7 +44,7 @@ jobs:
           gradle-version: wrapper
 
       - name: Run checks
-        run: ./gradlew mingwX64Test detektMingwX64Main detektMingwX86Main
+        run: ./gradlew mingwX64Test detektMingwX64Main
 
 env:
   GRADLE_OPTS: -Dorg.gradle.daemon=false -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx4g -Xms512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=1024m"
