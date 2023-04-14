@@ -7,7 +7,7 @@ android-sdk-compile = "33"
 android-sdk-min = "21"
 android-sdk-target = "33"
 
-conventions = "0.0.30"
+conventions = "0.0.31"
 
 detekt = "1.22.0"
 detektEygraber = "1.0.11"
