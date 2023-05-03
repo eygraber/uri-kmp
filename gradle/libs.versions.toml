@@ -36,4 +36,4 @@ detektEygraber-formatting = { module = "com.eygraber.detekt.rules:formatting", v
 detektEygraber-style = { module = "com.eygraber.detekt.rules:style", version.ref = "detektEygraber" }
 
 test-android-junit = "androidx.test.ext:junit:1.1.5"
-test-android-robolectric = "org.robolectric:robolectric:4.10"
+test-android-robolectric = "org.robolectric:robolectric:4.10.1"
