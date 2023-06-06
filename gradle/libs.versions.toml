@@ -9,7 +9,7 @@ android-sdk-target = "33"
 
 conventions = "0.0.33"
 
-detekt = "1.22.0"
+detekt = "1.23.0"
 detektEygraber = "1.0.11"
 
 dokka = "1.8.20"
@@ -17,6 +17,8 @@ dokka = "1.8.20"
 jdk = "11"
 
 kotlin = "1.8.21"
+
+ktlint = "0.49.1"
 
 publish = "0.25.2"
 
@@ -31,9 +33,11 @@ buildscript-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", versio
 buildscript-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 buildscript-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publish" }
 
-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 detektEygraber-formatting = { module = "com.eygraber.detekt.rules:formatting", version.ref = "detektEygraber" }
 detektEygraber-style = { module = "com.eygraber.detekt.rules:style", version.ref = "detektEygraber" }
+
+# not actually used; just here so renovate picks it up
+ktlint = { module = "com.pinterest.ktlint:ktlint-bom", version.ref = "ktlint" }
 
 test-android-junit = "androidx.test.ext:junit:1.1.5"
 test-android-robolectric = "org.robolectric:robolectric:4.10.3"

@@ -41,12 +41,14 @@ internal abstract class AbstractPart(encoded: String?, decoded: String?) {
     if(encoded == NotCachedHolder.NotCached) encode(decoded) else encoded
   }
 
-  private val mCanonicalRepresentation: Int = when {
-    encoded != NotCachedHolder.NotCached -> REPRESENTATION_ENCODED
+  init {
+    when {
+      encoded != NotCachedHolder.NotCached -> REPRESENTATION_ENCODED
 
-    decoded != NotCachedHolder.NotCached -> REPRESENTATION_DECODED
+      decoded != NotCachedHolder.NotCached -> REPRESENTATION_DECODED
 
-    else -> throw IllegalArgumentException("Neither encoded nor decoded")
+      else -> throw IllegalArgumentException("Neither encoded nor decoded")
+    }
   }
 
   val decoded: String? get() = internalDecoded

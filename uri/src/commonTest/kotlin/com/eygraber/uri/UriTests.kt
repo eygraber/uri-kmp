@@ -186,8 +186,10 @@ class UriTest {
     val appended = base.buildUpon()
       .appendEncodedPath("conversations/addr=555-1212")
       .build()
-    assertEquals("content://sms/conversations/addr=555-1212",
-                 appended.toString())
+    assertEquals(
+      "content://sms/conversations/addr=555-1212",
+      appended.toString()
+    )
     assertEquals(2, appended.pathSegments.size)
     assertEquals("conversations", appended.pathSegments[0])
     assertEquals("addr=555-1212", appended.pathSegments[1])
@@ -587,8 +589,11 @@ class UriTest {
 
   companion object {
     private fun testHierarchical(
-      scheme: String?, authority: String?,
-      path: String?, query: String?, fragment: String?
+      scheme: String?,
+      authority: String?,
+      path: String?,
+      query: String?,
+      fragment: String?
     ) {
       val sb = StringBuilder()
       if(authority != null) {
@@ -612,18 +617,50 @@ class UriTest {
 
       // Run these twice to test caching.
       compareHierarchical(
-        uriString, ssp, uri, scheme, authority, path, query, fragment)
+        uriString,
+        ssp,
+        uri,
+        scheme,
+        authority,
+        path,
+        query,
+        fragment
+      )
       compareHierarchical(
-        uriString, ssp, uri, scheme, authority, path, query, fragment)
+        uriString,
+        ssp,
+        uri,
+        scheme,
+        authority,
+        path,
+        query,
+        fragment
+      )
 
       // Test rebuilt version.
       uri = uri.buildUpon().build()
 
       // Run these twice to test caching.
       compareHierarchical(
-        uriString, ssp, uri, scheme, authority, path, query, fragment)
+        uriString,
+        ssp,
+        uri,
+        scheme,
+        authority,
+        path,
+        query,
+        fragment
+      )
       compareHierarchical(
-        uriString, ssp, uri, scheme, authority, path, query, fragment)
+        uriString,
+        ssp,
+        uri,
+        scheme,
+        authority,
+        path,
+        query,
+        fragment
+      )
 
       // The decoded and encoded versions of the inputs are all the same.
       // We'll test the actual encoding decoding separately.
@@ -637,9 +674,25 @@ class UriTest {
         .encodedFragment(fragment)
         .build()
       compareHierarchical(
-        uriString, ssp, built, scheme, authority, path, query, fragment)
+        uriString,
+        ssp,
+        built,
+        scheme,
+        authority,
+        path,
+        query,
+        fragment
+      )
       compareHierarchical(
-        uriString, ssp, built, scheme, authority, path, query, fragment)
+        uriString,
+        ssp,
+        built,
+        scheme,
+        authority,
+        path,
+        query,
+        fragment
+      )
 
       // Test building with decoded versions.
       built = Uri.Builder()
@@ -650,22 +703,58 @@ class UriTest {
         .fragment(fragment)
         .build()
       compareHierarchical(
-        uriString, ssp, built, scheme, authority, path, query, fragment)
+        uriString,
+        ssp,
+        built,
+        scheme,
+        authority,
+        path,
+        query,
+        fragment
+      )
       compareHierarchical(
-        uriString, ssp, built, scheme, authority, path, query, fragment)
+        uriString,
+        ssp,
+        built,
+        scheme,
+        authority,
+        path,
+        query,
+        fragment
+      )
 
       // Rebuild.
       built = built.buildUpon().build()
       compareHierarchical(
-        uriString, ssp, built, scheme, authority, path, query, fragment)
+        uriString,
+        ssp,
+        built,
+        scheme,
+        authority,
+        path,
+        query,
+        fragment
+      )
       compareHierarchical(
-        uriString, ssp, built, scheme, authority, path, query, fragment)
+        uriString,
+        ssp,
+        built,
+        scheme,
+        authority,
+        path,
+        query,
+        fragment
+      )
     }
 
     private fun compareHierarchical(
-      uriString: String, ssp: String,
+      uriString: String,
+      ssp: String,
       uri: Uri,
-      scheme: String?, authority: String?, path: String?, query: String?,
+      scheme: String?,
+      authority: String?,
+      path: String?,
+      query: String?,
       fragment: String?
     ) {
       assertEquals(scheme, uri.scheme)

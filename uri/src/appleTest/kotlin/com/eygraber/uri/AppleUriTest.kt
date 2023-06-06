@@ -1,8 +1,8 @@
 package com.eygraber.uri
 
+import platform.Foundation.NSURL
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import platform.Foundation.NSURL
 
 class AppleUriTest {
   @Test
