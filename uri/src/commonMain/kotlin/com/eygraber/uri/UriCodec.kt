@@ -212,7 +212,7 @@ public object UriCodec {
           '%' -> {
             // Expect two characters representing a number in hex.
             var hexValue: Byte = 0
-            for(j in 0..1) {
+            for(@Suppress("UnusedPrivateProperty") j in 0..1) {
               val nextC = try {
                 getNextCharacter(s, i, s.length, name = null)
               }
@@ -311,7 +311,9 @@ public object UriCodec {
   ): UriSyntaxException {
     val nameString = if(name == null) "" else " in [$name]"
     return UriSyntaxException(
-      uri, "Unexpected character$nameString: $unexpected", index
+      uri,
+      "Unexpected character$nameString: $unexpected",
+      index
     )
   }
 
