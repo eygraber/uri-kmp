@@ -1,5 +1,6 @@
 import com.eygraber.conventions.kotlin.kmp.androidUnitTest
 import org.jetbrains.kotlin.gradle.plugin.mpp.AbstractKotlinNativeTargetPreset
+import org.jetbrains.kotlin.konan.target.KonanTarget
 
 plugins {
   id("com.eygraber.conventions-kotlin-multiplatform")
@@ -25,7 +26,7 @@ kotlin {
   )
 
   presets.withType<AbstractKotlinNativeTargetPreset<*>>().forEach {
-    if(!it.konanTarget.family.isAppleFamily) {
+    if(!it.konanTarget.family.isAppleFamily && it.konanTarget !in KonanTarget.deprecatedTargets) {
       targetFromPreset(it)
     }
   }
