@@ -22,6 +22,7 @@ kotlin {
     jvm = true,
     ios = true,
     macos = true,
+    wasm = true,
     js = true
   )
 
