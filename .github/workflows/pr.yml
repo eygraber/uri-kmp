@@ -23,7 +23,7 @@ jobs:
           gradle-version: wrapper
 
       - name: Run checks
-        run: ./format --no-format && ./gradlew check detektAppleMain detektJvmMain detektJsMain detektMetadataMain
+        run: ./format --no-format && ./gradlew check detektAppleMain detektJvmMain detektJsWasmMain detektMetadataMain -x wasmBrowserTest
 
   checkWindows:
     runs-on: windows-latest
