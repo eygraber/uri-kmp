@@ -28,7 +28,7 @@ jobs:
       - uses: gradle/wrapper-validation-action@v1.0.6
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2.4.2
+        uses: gradle/gradle-build-action@v2.5.0
         with:
           gradle-version: wrapper
 
@@ -64,7 +64,7 @@ jobs:
       - uses: gradle/wrapper-validation-action@v1.0.6
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2.4.2
+        uses: gradle/gradle-build-action@v2.5.0
         with:
           gradle-version: wrapper
 
