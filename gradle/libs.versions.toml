@@ -18,7 +18,7 @@ jdk = "11"
 
 kotlin = "1.8.22"
 
-ktlint = "0.49.1"
+ktlint = "0.50.0"
 
 publish = "0.25.2"
 
