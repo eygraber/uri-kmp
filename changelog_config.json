@@ -27,6 +27,14 @@
     {
       "title": "\uD83D\uDCE6 Dependencies",
       "labels": ["dependencies"]
+    },
+    {
+      "title": "## \uD83D\uDCA5 GitHub Actions",
+      "labels": ["gh-actions"]
+    },
+    {
+      "title": "## \uD83D\uDC18 Gradle Improvements",
+      "labels": ["gradle"]
     }
   ],
   "ignore_labels": [
