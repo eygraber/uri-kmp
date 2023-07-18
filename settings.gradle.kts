@@ -53,7 +53,7 @@ dependencyResolutionManagement {
 
 plugins {
   id("com.eygraber.conventions.settings") version "0.0.39"
-  id("com.gradle.enterprise") version "3.13.4"
+  id("com.gradle.enterprise") version "3.14"
   id("org.gradle.toolchains.foojay-resolver-convention") version("0.6.0")
 }
 
