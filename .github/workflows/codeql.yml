@@ -1,0 +1,49 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ "master" ]
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - uses: actions/setup-java@v3.11.0
+      with:
+        distribution: 'zulu'
+        java-version-file: .ci-java-version
+
+    - uses: gradle/wrapper-validation-action@v1.0.6
+
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2.6.1
+      with:
+        gradle-version: wrapper
+
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: java
+
+    - run: |
+        echo "Run, Build Application using script"
+        ./gradlew assemble
+      env:
+        GRADLE_OPTS: -Dorg.gradle.daemon=false -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx4g -Xms512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=1024m"
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
