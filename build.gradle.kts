@@ -1,4 +1,5 @@
 import com.eygraber.conventions.tasks.deleteRootBuildDirWhenCleaning
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 buildscript {
   dependencies {
@@ -33,7 +34,6 @@ gradleConventionsDefaults {
   }
 
   kotlin {
-    jdkVersion = libs.versions.jdk.get()
-    jvmDistribution = JvmVendorSpec.AZUL
+    jvmTargetVersion = JvmTarget.JVM_11
   }
 }
