@@ -487,8 +487,6 @@ style:
     active: true
   OptionalUnit:
     active: true
-  OptionalWhenBraces:
-    active: true
   PreferToOverPairSyntax:
     active: true
   ProtectedMemberInFinalClass:
