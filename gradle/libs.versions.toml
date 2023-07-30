@@ -7,14 +7,12 @@ android-sdk-compile = "33"
 android-sdk-min = "21"
 android-sdk-target = "33"
 
-conventions = "0.0.39"
+conventions = "0.0.44"
 
 detekt = "1.23.1"
 detektEygraber = "1.0.11"
 
 dokka = "1.8.20"
-
-jdk = "11"
 
 kotlin = "1.9.0"
 
