@@ -72,8 +72,8 @@ class UriCodecTests {
       // % in the end.
       UriCodec.decode(
         "ab%2f$%c4%82%25%e0%a1%80%",
-        false /* convertPlus */,
-        true /* throwOnFailure */
+        convertPlus = false,
+        throwOnFailure = true
       )
       fail("Expected URISyntaxException")
     }
