@@ -780,8 +780,7 @@ class UriTest {
       assertEquals(uriString, uri.toString())
     }
 
-    private fun makeHierarchicalUri(authority: Part?, path: PathPart?): Uri {
-      return HierarchicalUri("https", authority, path, null, null)
-    }
+    private fun makeHierarchicalUri(authority: Part?, path: PathPart?) =
+      HierarchicalUri("https", authority, path, null, null)
   }
 }
