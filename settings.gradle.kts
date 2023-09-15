@@ -52,7 +52,7 @@ dependencyResolutionManagement {
 }
 
 plugins {
-  id("com.eygraber.conventions.settings") version "0.0.50"
+  id("com.eygraber.conventions.settings") version "0.0.51"
   id("com.gradle.enterprise") version "3.15"
 }
 
