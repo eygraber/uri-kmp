@@ -1,6 +1,4 @@
 import com.eygraber.conventions.kotlin.kmp.androidUnitTest
-import org.jetbrains.kotlin.gradle.plugin.mpp.AbstractKotlinNativeTargetPreset
-import org.jetbrains.kotlin.konan.target.KonanTarget
 
 plugins {
   id("com.eygraber.conventions-kotlin-multiplatform")
@@ -19,19 +17,18 @@ kotlin {
   kmpTargets(
     project = project,
     android = true,
+    androidNative = true,
     jvm = true,
     ios = true,
     macos = true,
     tvos = true,
-    wasm = true,
+    watchos = true,
+    linux = true,
+    mingw = true,
+    wasmJs = true,
+    wasmWasi = true,
     js = true
   )
-
-  presets.withType<AbstractKotlinNativeTargetPreset<*>>().forEach {
-    if(!it.konanTarget.family.isAppleFamily && it.konanTarget !in KonanTarget.deprecatedTargets) {
-      targetFromPreset(it)
-    }
-  }
 
   sourceSets {
     commonTest {
