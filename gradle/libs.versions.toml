@@ -14,7 +14,7 @@ detektEygraber = "1.0.11"
 
 dokka = "1.9.10"
 
-kotlin = "1.9.20"
+kotlin = "1.9.21"
 
 ktlint = "1.0.1"
 
