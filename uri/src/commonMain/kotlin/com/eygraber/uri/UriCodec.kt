@@ -159,7 +159,8 @@ public object UriCodec {
       c in uppercaseAsciiAlphaRange ||
       c in digitAsciiRange ||
       c in defaultAllowedSet ||
-      allow != null && allow.indexOf(c) != -1
+      allow != null &&
+      allow.indexOf(c) != -1
 
   /**
    * Decodes '%'-escaped octets in the given string using the UTF-8 scheme.
