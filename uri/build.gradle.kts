@@ -17,7 +17,6 @@ kotlin {
     webOptions = KmpTarget.WebOptions(
       isNodeEnabled = true,
       isBrowserEnabled = true,
-      isLibraryBrowserTestsEnabled = true,
     ),
   )
 
