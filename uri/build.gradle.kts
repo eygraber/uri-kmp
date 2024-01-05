@@ -12,22 +12,13 @@ android {
 }
 
 kotlin {
-  explicitApi()
-
-  kmpTargets(
+  allKmpTargets(
     project = project,
-    android = true,
-    androidNative = true,
-    jvm = true,
-    ios = true,
-    macos = true,
-    tvos = true,
-    watchos = true,
-    linux = true,
-    mingw = true,
-    wasmJs = true,
-    wasmWasi = true,
-    js = true
+    webOptions = KmpTarget.WebOptions(
+      isNodeEnabled = true,
+      isBrowserEnabled = true,
+      isLibraryBrowserTestsEnabled = true,
+    ),
   )
 
   sourceSets {
