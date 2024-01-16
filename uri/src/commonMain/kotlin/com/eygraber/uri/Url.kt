@@ -42,7 +42,7 @@ public class Url internal constructor(
    * @return the encoded scheme-specific-part
    */
   override val encodedSchemeSpecificPart: String by lazy {
-    requireNotNull(uri.scheme) {
+    requireNotNull(uri.encodedSchemeSpecificPart) {
       "Url requires a non-null schemeSpecificPart"
     }
   }
@@ -57,7 +57,7 @@ public class Url internal constructor(
    * @return the authority for this URI
    */
   override val authority: String by lazy {
-    requireNotNull(uri.scheme) {
+    requireNotNull(uri.authority) {
       "Url requires a non-null authority"
     }
   }
@@ -72,7 +72,7 @@ public class Url internal constructor(
    * @return the authority for this URL
    */
   override val encodedAuthority: String by lazy {
-    requireNotNull(uri.scheme) {
+    requireNotNull(uri.encodedAuthority) {
       "Url requires a non-null authority"
     }
   }
