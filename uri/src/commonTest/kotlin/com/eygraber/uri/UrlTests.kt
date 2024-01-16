@@ -24,4 +24,16 @@ class UrlTests {
       "Url host must not be null"
     )
   }
+
+  @Test
+  fun test_urlProperties() {
+    val url = Url.parse("https://foo@google.com/?q=bar baz#")
+    assertEquals("https", url.scheme)
+    assertEquals("//foo@google.com/?q=bar baz", url.schemeSpecificPart)
+    assertEquals("foo@google.com", url.authority)
+    assertEquals("foo", url.userInfo)
+    assertEquals("google.com", url.host)
+    assertEquals("/", url.path)
+    assertEquals("q=bar baz", url.query)
+  }
 }
