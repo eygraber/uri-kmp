@@ -17,7 +17,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   check:
-    runs-on: macos-latest
+    runs-on: macos-14
 
     steps:
       - uses: actions/checkout@v4.1.1
@@ -30,9 +30,10 @@ jobs:
       - uses: gradle/wrapper-validation-action@v1.1.0
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3.0.0
+        uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: wrapper
+          gradle-home-cache-cleanup: true
 
       - name: Run checks
         run: ./format --no-format && ./gradlew check detektAppleMain detektJvmMain detektCommonJsMain detektMetadataMain -x wasmBrowserTest -x wasmNodeTest
@@ -51,9 +52,10 @@ jobs:
       - uses: gradle/wrapper-validation-action@v1.1.0
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3.0.0
+        uses: gradle/actions/setup-gradle@v3
         with:
           gradle-version: wrapper
+          gradle-home-cache-cleanup: true
 
       - name: Run checks
         run: ./gradlew mingwX64Test detektMingwX64Main
