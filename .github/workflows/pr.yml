@@ -147,7 +147,7 @@ jobs:
           gradle-version: wrapper
           gradle-home-cache-cleanup: true
 
-      - name: Run checks
+      - name: Run tests
         run: ./gradlew allTests -x wasmBrowserTest -x wasmNodeTest -x testDebug
 
 env:
