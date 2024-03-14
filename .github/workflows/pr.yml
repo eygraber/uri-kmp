@@ -126,7 +126,7 @@ jobs:
           gradle-version: wrapper
           gradle-home-cache-cleanup: true
 
-      - name: Run lint
+      - name: Run Android lint
         run: ./gradlew lintRelease
 
   test:
