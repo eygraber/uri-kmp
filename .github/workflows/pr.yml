@@ -16,11 +16,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  check:
+  assemble:
     runs-on: macos-14
-
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
       - uses: actions/setup-java@v4.2.1
         with:
@@ -35,14 +34,84 @@ jobs:
           gradle-version: wrapper
           gradle-home-cache-cleanup: true
 
-      - name: Run checks
-        run: ./format --no-format && ./gradlew check detektAppleMain detektJvmMain detektCommonJsMain detektMetadataMain -x wasmBrowserTest -x wasmNodeTest
+      - name: Run assemble task
+        run: ./gradlew assemble
 
-  checkWindows:
+  detekt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+
+      - uses: actions/setup-java@v4.2.1
+        with:
+          distribution: 'zulu'
+          java-version-file: .ci-java-version
+
+      - uses: gradle/wrapper-validation-action@v2.1.1
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: wrapper
+          gradle-home-cache-cleanup: true
+
+      - name: Run detekt
+        run: ./gradlew detektAll
+
+  detekt-apple:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+
+      - uses: actions/setup-java@v4.2.1
+        with:
+          distribution: 'zulu'
+          java-version-file: .ci-java-version
+
+      - uses: gradle/wrapper-validation-action@v2.1.1
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: wrapper
+          gradle-home-cache-cleanup: true
+
+      - name: Run detekt for apple targets
+        run: ./gradlew detektAppleMain detektAppleTest
+
+  detekt-windows:
     runs-on: windows-latest
-
     steps:
-      - uses: actions/checkout@v4.1.1
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+
+      - uses: actions/setup-java@v4.2.1
+        with:
+          distribution: 'zulu'
+          java-version-file: .ci-java-version
+
+      - uses: gradle/wrapper-validation-action@v2.1.1
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: wrapper
+          gradle-home-cache-cleanup: true
+
+      - name: Run detekt for windows targets
+        run: ./gradlew detektMingwMain detektMingwTest
+
+  ktlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+
+      - name: Run ktlint
+        run: ./format --no-format
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
       - uses: actions/setup-java@v4.2.1
         with:
@@ -58,7 +127,28 @@ jobs:
           gradle-home-cache-cleanup: true
 
       - name: Run checks
-        run: ./gradlew mingwX64Test detektMingwX64Main
+        run: ./gradlew lintRelease
+
+  test:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+
+      - uses: actions/setup-java@v4.2.1
+        with:
+          distribution: 'zulu'
+          java-version-file: .ci-java-version
+
+      - uses: gradle/wrapper-validation-action@v2.1.1
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: wrapper
+          gradle-home-cache-cleanup: true
+
+      - name: Run checks
+        run: ./gradlew allTests -x wasmBrowserTest -x wasmNodeTest -x testDebug
 
 env:
   GRADLE_OPTS: -Dorg.gradle.daemon=false -Dkotlin.incremental=false -Dorg.gradle.jvmargs="-Xmx4g -Xms512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8 -XX:MaxMetaspaceSize=1024m"

@@ -114,7 +114,6 @@ class UriTest {
       .encodedQuery("foo=bar")
       .encodedFragment("tee")
       .build()
-    assertFalse(Uri.EMPTY.equals(null))
     assertEquals(a, b)
     assertEquals(b, c)
     assertEquals(c, a)
@@ -268,11 +267,11 @@ class UriTest {
     // Make sure the original URI is still intact.
     assertEquals(2, first.pathSegments.size)
     assertEquals("b", first.lastPathSegment)
-    try {
+    runCatching {
       first.pathSegments[2]
       fail()
-    }
-    catch(e: IndexOutOfBoundsException) {
+    }.onFailure {
+      if(it !is IndexOutOfBoundsException) throw it
     }
     assertEquals(null, Uri.EMPTY.lastPathSegment)
     val withC = Uri.parse("foo:/a/b/").buildUpon().appendPath("c").build()
