@@ -133,7 +133,7 @@ public class Url internal constructor(
   /**
    * Constructs a new builder, copying the attributes from this Uri.
    */
-  override fun buildUpon(): Builder = Builder()
+  override fun buildUpon(): Builder = Builder(uri.buildUpon() as Uri.Builder)
 
   /**
    * Helper class for building or manipulating URL references. Not safe for
