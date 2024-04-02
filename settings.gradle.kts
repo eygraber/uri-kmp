@@ -53,19 +53,19 @@ dependencyResolutionManagement {
 
 plugins {
   id("com.eygraber.conventions.settings") version "0.0.70"
-  id("com.gradle.enterprise") version "3.17"
+  id("com.gradle.develocity") version "3.17"
 }
 
 rootProject.name = "uri-kmp"
 
 include(":uri")
 
-gradleEnterprise {
+develocity {
   buildScan {
-    termsOfServiceUrl = "https://gradle.com/terms-of-service"
+    termsOfUseUrl = "https://gradle.com/terms-of-service"
+    publishing.onlyIf { Env.isCI }
     if(Env.isCI) {
-      termsOfServiceAgree = "yes"
-      publishAlways()
+      termsOfUseAgree = "yes"
     }
   }
 }
