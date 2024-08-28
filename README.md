@@ -15,7 +15,7 @@ Most of this work is derived from AOSP's `Uri`:
 ### Gradle
 
 Groovy
-```
+``` groovy
 repositories {
   mavenCentral()
 }
@@ -23,7 +23,7 @@ implementation 'com.eygraber:uri-kmp:0.0.18'
 ```
 
 Kotlin
-```
+``` kotlin
 repositories {
   mavenCentral()
 }
@@ -35,14 +35,14 @@ implementation("com.eygraber:uri-kmp:0.0.18")
 Snapshots can be found at the Sonatype s01 repository:
 
 Groovy
-```
+``` groovy
 repositories {
   maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots' }
 }
 ```
 
 Kotlin
-```
+``` kotlin
 repositories {
   maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots")
 }
