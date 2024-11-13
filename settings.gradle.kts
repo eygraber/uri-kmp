@@ -46,7 +46,7 @@ dependencyResolutionManagement {
 
 plugins {
   id("com.eygraber.conventions.settings") version "0.0.78"
-  id("com.gradle.develocity") version "3.18.1"
+  id("com.gradle.develocity") version "3.18.2"
 }
 
 rootProject.name = "uri-kmp"
