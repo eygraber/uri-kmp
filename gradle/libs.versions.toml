@@ -38,4 +38,4 @@ detektEygraber-style = { module = "com.eygraber.detekt.rules:style", version.ref
 ktlint = { module = "com.pinterest.ktlint:ktlint-bom", version.ref = "ktlint" }
 
 test-android-junit = "androidx.test.ext:junit:1.2.1"
-test-android-robolectric = "org.robolectric:robolectric:4.14"
+test-android-robolectric = "org.robolectric:robolectric:4.14.1"
