@@ -21,17 +21,17 @@ kotlin {
   )
 
   sourceSets {
-    commonTest {
-      dependencies {
-        implementation(kotlin("test"))
-      }
+    androidUnitTest.dependencies {
+      implementation(libs.test.android.junit)
+      implementation(libs.test.android.robolectric)
     }
 
-    androidUnitTest {
-      dependencies {
-        implementation(libs.test.android.junit)
-        implementation(libs.test.android.robolectric)
-      }
+    commonTest.dependencies {
+      implementation(kotlin("test"))
+    }
+
+    wasmJsMain.dependencies {
+      implementation(libs.kotlinx.wasm.browser)
     }
   }
 }
