@@ -554,9 +554,9 @@ public interface Uri : Comparable<Uri> {
         query = Part.fromEncoded(encodedParameter)
         return this
       }
-      val oldQuery = query!!.encoded
+      val oldQuery = requireNotNull(query).encoded
       query = when {
-        oldQuery == null || oldQuery.isEmpty() -> Part.fromEncoded(encodedParameter)
+        oldQuery.isNullOrEmpty() -> Part.fromEncoded(encodedParameter)
         else -> Part.fromEncoded("$oldQuery&$encodedParameter")
       }
     }
@@ -638,17 +638,13 @@ public interface Uri : Comparable<Uri> {
      * @see [Uri.Builder] if you don't want the ssp and fragment to be encoded
      */
     public fun fromParts(
-      scheme: String?,
-      ssp: String?,
+      scheme: String,
+      ssp: String,
       fragment: String?
-    ): Uri {
-      requireNotNull(scheme) { "scheme" }
-      requireNotNull(ssp) { "ssp" }
-      return OpaqueUri(
-        scheme,
-        Part.fromDecoded(ssp),
-        Part.fromDecoded(fragment)
-      )
-    }
+    ): Uri = OpaqueUri(
+      scheme,
+      Part.fromDecoded(ssp),
+      Part.fromDecoded(fragment)
+    )
   }
 }

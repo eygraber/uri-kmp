@@ -96,7 +96,7 @@ public object UriCodec {
         }
         else {
           // Presumably, we've already done some encoding.
-          encoded!!.append(s, current, oldLength)
+          requireNotNull(encoded).append(s, current, oldLength)
           encoded.toString()
         }
       }
