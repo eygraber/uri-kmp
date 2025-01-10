@@ -1,6 +1,6 @@
 # Uri KMP
 
-[![Download](https://img.shields.io/maven-central/v/com.eygraber/uri-kmp/0.0.18)](https://search.maven.org/artifact/com.eygraber/uri-kmp)
+[![Download](https://img.shields.io/maven-central/v/com.eygraber/uri-kmp/0.0.19)](https://search.maven.org/artifact/com.eygraber/uri-kmp)
 
 Most of this work is derived from AOSP's `Uri`:
 
@@ -19,7 +19,7 @@ Groovy
 repositories {
   mavenCentral()
 }
-implementation 'com.eygraber:uri-kmp:0.0.18'
+implementation 'com.eygraber:uri-kmp:0.0.19'
 ```
 
 Kotlin
@@ -27,7 +27,7 @@ Kotlin
 repositories {
   mavenCentral()
 }
-implementation("com.eygraber:uri-kmp:0.0.18")
+implementation("com.eygraber:uri-kmp:0.0.19")
 ```
 
 #### Snapshots
