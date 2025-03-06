@@ -18,7 +18,7 @@ kotlin = "2.1.10"
 
 ktlint = "1.5.0"
 
-publish = "0.30.0"
+publish = "0.31.0"
 
 [plugins]
 conventions = { id = "com.eygraber.conventions", version.ref = "conventions" }
