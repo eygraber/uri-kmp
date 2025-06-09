@@ -30,20 +30,4 @@ repositories {
 implementation("com.eygraber:uri-kmp:0.0.19")
 ```
 
-#### Snapshots
-
-Snapshots can be found at the Sonatype s01 repository:
-
-Groovy
-``` groovy
-repositories {
-  maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots' }
-}
-```
-
-Kotlin
-``` kotlin
-repositories {
-  maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots")
-}
-```
+Snapshots can be found [here](https://central.sonatype.org/publish/publish-portal-snapshots/#consuming-via-gradle).
