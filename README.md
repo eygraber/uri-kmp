@@ -33,3 +33,49 @@ implementation("com.eygraber:uri-kmp:0.0.19")
 ```
 
 Snapshots can be found [here](https://central.sonatype.org/publish/publish-portal-snapshots/#consuming-via-gradle).
+
+### Usage
+
+#### Uri
+
+```kotlin
+Uri.parse("content://media/external/audio/media/1")
+
+// OR
+
+"content://media/external/audio/media/1".toKmpUri()
+```
+
+#### Url
+
+```kotlin
+Url.parse("https://example.com")
+
+// OR
+
+"https://example.com".toKmpUrl()
+```
+
+#### Encoding
+
+```kotlin
+Uri.encode("content://media/external/audio/media/1 2")
+Url.encode("https://example.com?q=1 2")
+
+// OR
+
+"content://media/external/audio/media/1 2".encodeUri()
+"https://example.com?q=1 2".encodeUri()
+```
+
+#### Decoding
+
+```kotlin
+Uri.decode("content://media/external/audio/media/1%202")
+Url.decode("https://example.com?q=1%202")
+
+// OR
+
+"content://media/external/audio/media/1%202".decodeUri()
+"https://example.com?q=1%202".decodeUri()
+```

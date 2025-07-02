@@ -646,5 +646,43 @@ public interface Uri : Comparable<Uri> {
       Part.fromDecoded(ssp),
       Part.fromDecoded(fragment)
     )
+
+    /**
+     * @see UriCodec.encodeOrNull
+     */
+    public fun encodeOrNull(s: String?): String? = UriCodec.encodeOrNull(s)
+
+    /**
+     * @see UriCodec.encodeOrNull(String?, String?)
+     */
+    public fun encodeOrNull(s: String?, allow: String?): String? = UriCodec.encodeOrNull(s, allow)
+
+    /**
+     * @see UriCodec.encode
+     */
+    public fun encode(s: String): String = UriCodec.encode(s)
+
+    /**
+     * @see UriCodec.encode
+     */
+    public fun encode(s: String, allow: String?): String = UriCodec.encode(s, allow)
+
+    /**
+     * @see UriCodec.decodeOrNull
+     */
+    public fun decodeOrNull(
+      s: String?,
+      convertPlus: Boolean = false,
+      throwOnFailure: Boolean = false
+    ): String? = UriCodec.decodeOrNull(s, convertPlus, throwOnFailure)
+
+    /**
+     * @see UriCodec.decode
+     */
+    public fun decode(
+      s: String,
+      convertPlus: Boolean = false,
+      throwOnFailure: Boolean = false
+    ): String = UriCodec.decode(s, convertPlus, throwOnFailure)
   }
 }

@@ -3,7 +3,7 @@ package com.eygraber.ui
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.eygraber.uri.Uri
 import com.eygraber.uri.toAndroidUri
-import com.eygraber.uri.toUri
+import com.eygraber.uri.toKmpUri
 import com.eygraber.uri.toUrl
 import com.eygraber.uri.toUrlOrNull
 import org.junit.Test
@@ -24,7 +24,7 @@ public class AndroidUriTest {
   @Test
   public fun `toUri does not change the uri`() {
     val uri = AndroidUri.parse("https://google.com")
-    assertEquals(uri.toString(), uri.toUri().toString())
+    assertEquals(uri.toString(), uri.toKmpUri().toString())
   }
 
   @Test
