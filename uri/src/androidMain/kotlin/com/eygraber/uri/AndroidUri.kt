@@ -6,6 +6,6 @@ public fun Uri.toAndroidUri(): AndroidUri = AndroidUri.parse(toString())
 
 public fun Uri.toAndroidUriOrNull(): AndroidUri? = runCatching { toAndroidUri() }.getOrNull()
 
-public fun AndroidUri.toUri(): Uri = Uri.parse(toString())
+public fun AndroidUri.toKmpUri(): Uri = Uri.parse(toString())
 
-public fun AndroidUri.toUriOrNull(): Uri? = runCatching { toUri() }.getOrNull()
+public fun AndroidUri.toKmpUriOrNull(): Uri? = runCatching { toKmpUri() }.getOrNull()
