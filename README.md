@@ -2,7 +2,7 @@
 
 A library for working with URIs and URLs in Kotlin Multiplatform
 
-[![Download](https://img.shields.io/maven-central/v/com.eygraber/uri-kmp/0.0.19)](https://search.maven.org/artifact/com.eygraber/uri-kmp)
+[![Download](https://img.shields.io/maven-central/v/com.eygraber/uri-kmp/0.0.20)](https://search.maven.org/artifact/com.eygraber/uri-kmp)
 
 Most of this work is derived from AOSP's `Uri`:
 
@@ -21,7 +21,7 @@ Groovy
 repositories {
   mavenCentral()
 }
-implementation 'com.eygraber:uri-kmp:0.0.19'
+implementation 'com.eygraber:uri-kmp:0.0.20'
 ```
 
 Kotlin
@@ -29,7 +29,7 @@ Kotlin
 repositories {
   mavenCentral()
 }
-implementation("com.eygraber:uri-kmp:0.0.19")
+implementation("com.eygraber:uri-kmp:0.0.20")
 ```
 
 Snapshots can be found [here](https://central.sonatype.org/publish/publish-portal-snapshots/#consuming-via-gradle).
