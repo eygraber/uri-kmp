@@ -1,5 +1,7 @@
 # Uri KMP
 
+A library for working with URIs and URLs in Kotlin Multiplatform
+
 [![Download](https://img.shields.io/maven-central/v/com.eygraber/uri-kmp/0.0.19)](https://search.maven.org/artifact/com.eygraber/uri-kmp)
 
 Most of this work is derived from AOSP's `Uri`:
