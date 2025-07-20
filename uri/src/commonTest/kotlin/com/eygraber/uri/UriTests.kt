@@ -552,6 +552,47 @@ class UriTest {
   }
 
   @Test
+  fun testResolve() {
+    val base = Uri.parse("http://google.com/a/b")
+    var resolved = base.resolve("c/d")
+    assertEquals("http", resolved.scheme)
+    assertEquals("google.com", resolved.authority)
+    assertEquals("/a/c/d", resolved.path)
+    assertNull(resolved.query)
+
+    resolved = base.resolve("../c/d")
+    assertEquals("http", resolved.scheme)
+    assertEquals("google.com", resolved.authority)
+    assertEquals("/c/d", resolved.path)
+    assertNull(resolved.query)
+
+    resolved = base.resolve("/c/d")
+    assertEquals("http", resolved.scheme)
+    assertEquals("google.com", resolved.authority)
+    assertEquals("/c/d", resolved.path)
+    assertNull(resolved.query)
+
+    resolved = base.resolve("http://other.com/c/d")
+    assertEquals("http", resolved.scheme)
+    assertEquals("other.com", resolved.authority)
+    assertEquals("/c/d", resolved.path)
+    assertNull(resolved.query)
+
+    resolved = base.resolve("c/d?foo=bar")
+    assertEquals("http", resolved.scheme)
+    assertEquals("google.com", resolved.authority)
+    assertEquals("/a/c/d", resolved.path)
+    assertEquals("foo=bar", resolved.query)
+
+    val baseWithQuery = Uri.parse("http://google.com/a/b?a=b")
+    resolved = baseWithQuery.resolve("c/d")
+    assertEquals("http", resolved.scheme)
+    assertEquals("google.com", resolved.authority)
+    assertEquals("/a/c/d", resolved.path)
+    assertNull(resolved.query)
+  }
+
+  @Test
   fun testGetQueryParametersEmptyValue() {
     assertEquals(listOf(""), Uri.parse("http://foo/path?abc").getQueryParameters("abc"))
     assertEquals(listOf(""), Uri.parse("http://foo/path?foo=bar&abc").getQueryParameters("abc"))

@@ -20,31 +20,39 @@ package com.eygraber.uri
 /**
  * Exception thrown to indicate that a string could not be parsed as a URI reference.
  */
-public class UriSyntaxException(
+public class UriSyntaxException : Exception {
   /**
    * The input string.
    */
-  public val input: String,
-  /**
-   * Returns a string explaining why the input string could not be parsed.
-   */
-  private val internalReason: String,
+  public val input: String
+
   /**
    * An index into the input string of the position at which the
    * parse error occurred, or `-1` if this position is not known.
    */
-  public val index: Int = -1
-) : Exception(internalReason) {
-  init {
+  public val index: Int
+
+  public constructor(
+    input: String,
+    internalReason: String,
+    index: Int
+  ) : super(internalReason) {
     require(index >= -1)
+    this.input = input
+    this.index = index
   }
+
+  public constructor(
+    input: String,
+    internalReason: String
+  ) : this(input, internalReason, -1)
 
   public val reason: String
     get() = message
 
   public override val message: String
     get() = buildString {
-      append(internalReason)
+      append(super.message)
       if(index > -1) {
         append(" at index ")
         append(index)

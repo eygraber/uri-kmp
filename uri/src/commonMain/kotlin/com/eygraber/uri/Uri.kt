@@ -377,6 +377,90 @@ public interface Uri : Comparable<Uri> {
     return if(scheme == lowerScheme) this else buildUpon().scheme(lowerScheme).build()
   }
 
+  /**
+   * Resolves the given URI against this URI.
+   *
+   * @param other the URI to resolve against this URI
+   *
+   * @return the resolved URI
+   */
+  public fun resolve(other: Uri): Uri {
+    if(other.isAbsolute || isOpaque) {
+      return other
+    }
+
+    if(
+      other.scheme == null &&
+      other.authority == null &&
+      other.path.isNullOrEmpty() &&
+      other.fragment != null
+    ) {
+      return buildUpon()
+        .fragment(other.fragment)
+        .build()
+    }
+
+    val builder = buildUpon()
+    builder.scheme(scheme)
+    builder.query(other.query)
+    builder.fragment(other.fragment)
+
+    if(other.authority != null) {
+      builder.authority(other.authority)
+      builder.path(other.path)
+    }
+    else {
+      builder.path(resolvePath(other.path.orEmpty()))
+    }
+
+    return builder.build()
+  }
+
+  /**
+   * Constructs a new URI by parsing the given string and then resolving it against this URI.
+   *
+   * @param other the string to be parsed into a URI
+   *
+   * @return the resolved URI
+   */
+  public fun resolve(other: String): Uri = resolve(parse(other))
+
+  private fun resolvePath(otherPath: String): String {
+    val basePath = path.orEmpty()
+    if (otherPath.isEmpty()) {
+      return basePath
+    }
+    if (otherPath.startsWith('/')) {
+      return normalizePath(otherPath)
+    }
+    val lastSlash = basePath.lastIndexOf('/')
+    val basePrefix = if (lastSlash == -1) "" else basePath.substring(0, lastSlash + 1)
+    return normalizePath(basePrefix + otherPath)
+  }
+
+  private fun normalizePath(path: String): String {
+    if (path.isEmpty()) {
+      return ""
+    }
+    val segments = path.split('/')
+    val stack = mutableListOf<String>()
+    for (segment in segments) {
+      if (segment == "..") {
+        if (stack.isNotEmpty() && stack.last() != "..") {
+          stack.removeAt(stack.lastIndex)
+        } else {
+          stack.add(segment)
+        }
+      } else if (segment != ".") {
+        stack.add(segment)
+      }
+    }
+    if (path.endsWith("/.") || path.endsWith("/..")) {
+      stack.add("")
+    }
+    return stack.joinToString("/")
+  }
+
   override fun compareTo(other: Uri): Int = toString().compareTo(other.toString())
 
   /**
