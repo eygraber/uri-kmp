@@ -16,7 +16,7 @@ dokka = "2.0.0"
 
 kotlin = "2.2.0"
 
-ktlint = "1.7.0"
+ktlint = "1.7.1"
 
 publish = "0.34.0"
 
