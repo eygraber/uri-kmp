@@ -1,7 +1,7 @@
 [versions]
 android-cacheFix-plugin = "3.0.1"
 
-android-plugin = "8.11.1"
+android-plugin = "8.12.0"
 
 android-sdk-compile = "33"
 android-sdk-min = "21"
