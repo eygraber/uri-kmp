@@ -40,4 +40,4 @@ ktlint = { module = "com.pinterest.ktlint:ktlint-bom", version.ref = "ktlint" }
 kotlinx-wasm-browser = "org.jetbrains.kotlinx:kotlinx-browser:0.3"
 
 test-android-junit = "androidx.test.ext:junit:1.3.0"
-test-android-robolectric = "org.robolectric:robolectric:4.15.1"
+test-android-robolectric = "org.robolectric:robolectric:4.16"
