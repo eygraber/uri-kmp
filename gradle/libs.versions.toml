@@ -37,7 +37,7 @@ detektEygraber-style = { module = "com.eygraber.detekt.rules:style", version.ref
 # not actually used; just here so renovate picks it up
 ktlint = { module = "com.pinterest.ktlint:ktlint-bom", version.ref = "ktlint" }
 
-kotlinx-wasm-browser = "org.jetbrains.kotlinx:kotlinx-browser:0.3"
+kotlinx-wasm-browser = "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
 
 test-android-junit = "androidx.test.ext:junit:1.3.0"
 test-android-robolectric = "org.robolectric:robolectric:4.16"
