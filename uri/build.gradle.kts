@@ -20,6 +20,14 @@ kotlin {
     ),
   )
 
+  js {
+    browser {
+      testTask {
+        enabled = false
+      }
+    }
+  }
+
   sourceSets {
     androidUnitTest.dependencies {
       implementation(libs.test.android.junit)
