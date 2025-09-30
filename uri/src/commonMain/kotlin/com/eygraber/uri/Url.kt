@@ -3,7 +3,9 @@ package com.eygraber.uri
 import com.eygraber.uri.parts.Part
 import com.eygraber.uri.uris.OpaqueUri
 import com.eygraber.uri.uris.StringUri
+import kotlinx.serialization.Serializable
 
+@Serializable(with = UrlSerializer::class)
 public class Url internal constructor(
   private val uri: Uri
 ) : Uri by uri {

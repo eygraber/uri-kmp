@@ -22,7 +22,9 @@ import com.eygraber.uri.parts.PathPart
 import com.eygraber.uri.uris.HierarchicalUri
 import com.eygraber.uri.uris.OpaqueUri
 import com.eygraber.uri.uris.StringUri
+import kotlinx.serialization.Serializable
 
+@Serializable(with = UriSerializer::class)
 public interface Uri : Comparable<Uri> {
   /**
    * Returns true if this URI is hierarchical like "http://google.com".
