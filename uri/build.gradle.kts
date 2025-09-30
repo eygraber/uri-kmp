@@ -1,6 +1,7 @@
 import com.eygraber.conventions.kotlin.kmp.androidUnitTest
 
 plugins {
+  alias(libs.plugins.kotlinx.serialization)
   id("com.eygraber.conventions-kotlin-multiplatform")
   id("com.eygraber.conventions-android-library")
   id("com.eygraber.conventions-detekt")
@@ -29,6 +30,10 @@ kotlin {
   }
 
   sourceSets {
+    commonMain.dependencies {
+      api(libs.kotlinx.serialization.core)
+    }
+
     androidUnitTest.dependencies {
       implementation(libs.test.android.junit)
       implementation(libs.test.android.robolectric)
@@ -36,6 +41,7 @@ kotlin {
 
     commonTest.dependencies {
       implementation(kotlin("test"))
+      implementation(libs.kotlinx.serialization.json)
     }
 
     wasmJsMain.dependencies {

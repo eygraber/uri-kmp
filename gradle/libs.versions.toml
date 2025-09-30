@@ -15,6 +15,7 @@ detektEygraber = "1.0.12"
 dokka = "2.0.0"
 
 kotlin = "2.2.20"
+kotlinx-serialization = "1.9.0"
 
 ktlint = "1.7.1"
 
@@ -22,6 +23,7 @@ publish = "0.34.0"
 
 [plugins]
 conventions = { id = "com.eygraber.conventions", version.ref = "conventions" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 [libraries]
 buildscript-android = { module = "com.android.tools.build:gradle", version.ref = "android-plugin" }
@@ -36,6 +38,9 @@ detektEygraber-style = { module = "com.eygraber.detekt.rules:style", version.ref
 
 # not actually used; just here so renovate picks it up
 ktlint = { module = "com.pinterest.ktlint:ktlint-bom", version.ref = "ktlint" }
+
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
 kotlinx-wasm-browser = "org.jetbrains.kotlinx:kotlinx-browser:0.5.0"
 
