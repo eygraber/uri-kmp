@@ -1,5 +1,3 @@
-import com.eygraber.conventions.kotlin.kmp.androidUnitTest
-
 plugins {
   alias(libs.plugins.kotlinx.serialization)
   id("com.eygraber.conventions-kotlin-multiplatform")
