@@ -17,7 +17,7 @@ dokka = "2.1.0"
 kotlin = "2.2.21"
 kotlinx-serialization = "1.9.0"
 
-ktlint = "1.7.1"
+ktlint = "1.8.0"
 
 publish = "0.35.0"
 
