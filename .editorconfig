@@ -17,6 +17,7 @@ ktlint_standard_filename = disabled
 ktlint_standard_function-naming = disabled
 ktlint_standard_function-signature = disabled
 ktlint_standard_keyword-spacing = disabled
+ktlint_standard_mixed-condition-operators = disabled
 ktlint_standard_package-name = disabled
 ktlint_standard_property-naming = disabled
 ktlint_standard_spacing-between-declarations-with-annotations = disabled
