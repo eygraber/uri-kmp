@@ -138,6 +138,7 @@ internal class PathPart internal constructor(encoded: String?, decoded: String?)
      * Prepends path values with "/" if they're present, not empty, and
      * they don't already start with "/".
      */
+    @Suppress("NullableToStringCall")
     fun makeAbsolute(oldPart: PathPart): PathPart {
       // We don't care which version we use, and we don't want to force
       // unnecessary encoding/decoding.

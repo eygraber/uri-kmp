@@ -79,6 +79,7 @@ internal abstract class AbstractHierarchicalUri : Uri {
     }
   }
 
+  @Suppress("ReturnCount")
   private fun findPortSeparator(authority: String): Int {
     // Reverse search for the ':' character that breaks as soon as a char that is neither
     // a colon nor an ascii digit is encountered. Thanks to the goodness of UTF-16 encoding,

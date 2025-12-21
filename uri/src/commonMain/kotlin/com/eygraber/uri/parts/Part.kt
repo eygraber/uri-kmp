@@ -32,6 +32,7 @@ internal open class Part internal constructor(encoded: String?, decoded: String?
 
   private class EmptyPart(value: String?) : Part(value, value) {
     init {
+      @Suppress("NullableToStringCall")
       require(value.isNullOrEmpty()) { "Expected empty value, got: $value" }
     }
 
