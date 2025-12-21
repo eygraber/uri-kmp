@@ -1,13 +1,10 @@
 plugins {
   alias(libs.plugins.kotlinx.serialization)
+  id("com.android.lint")
   id("com.eygraber.conventions-kotlin-multiplatform")
-  id("com.eygraber.conventions-android-library")
+  id("com.eygraber.conventions-android-kmp-library")
   id("com.eygraber.conventions-detekt2")
   id("com.eygraber.conventions-publish-maven-central")
-}
-
-android {
-  namespace = "com.eygraber.uri"
 }
 
 kotlin {
@@ -17,7 +14,12 @@ kotlin {
       isNodeEnabled = true,
       isBrowserEnabled = true,
     ),
+    androidNamespace = "com.eygraber.uri",
   )
+
+  androidLibrary {
+    withHostTest {}
+  }
 
   js {
     browser {
@@ -32,7 +34,7 @@ kotlin {
       api(libs.kotlinx.serialization.core)
     }
 
-    androidUnitTest.dependencies {
+    named("androidHostTest").dependencies {
       implementation(libs.test.android.junit)
       implementation(libs.test.android.robolectric)
     }
