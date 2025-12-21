@@ -9,12 +9,12 @@ android-sdk-target = "33"
 
 conventions = "0.0.94"
 
-detekt = "1.23.8"
-detektEygraber = "1.0.12"
+detekt = "2.0.0-alpha.1"
+detektEygraber = "1.0.14"
 
 dokka = "2.1.0"
 
-kotlin = "2.2.21"
+kotlin = "2.3.0"
 kotlinx-serialization = "1.9.0"
 
 ktlint = "1.8.0"
@@ -28,7 +28,7 @@ kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", vers
 [libraries]
 buildscript-android = { module = "com.android.tools.build:gradle", version.ref = "android-plugin" }
 buildscript-androidCacheFix = { module = "gradle.plugin.org.gradle.android:android-cache-fix-gradle-plugin", version.ref = "android-cacheFix-plugin" }
-buildscript-detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+buildscript-detekt = { module = "dev.detekt:detekt-gradle-plugin", version.ref = "detekt" }
 buildscript-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 buildscript-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 buildscript-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publish" }

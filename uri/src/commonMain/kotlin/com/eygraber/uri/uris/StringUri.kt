@@ -94,10 +94,10 @@ internal class StringUri(
       // If the URI is absolute.
       ssi > -1 -> {
         // Is there anything after the ':'?
-        val schemeOnly = ssi + 1 == uriString.length
+        val isSchemeOnly = ssi + 1 == uriString.length
 
         when {
-          schemeOnly -> null // Opaque URI.
+          isSchemeOnly -> null // Opaque URI.
 
           // A '/' after the ':' means this is hierarchical.
           uriString[ssi + 1] != '/' -> null // Opaque URI.

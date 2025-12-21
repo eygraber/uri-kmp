@@ -23,9 +23,9 @@ import com.eygraber.uri.parts.Part
 internal class OpaqueUri internal constructor(
   override val scheme: String?,
   private val ssp: Part,
-  _fragmentPart: Part?
+  paramFragmentPart: Part?
 ) : Uri {
-  private val fragmentPart: Part = _fragmentPart ?: Part.NULL
+  private val fragmentPart: Part = paramFragmentPart ?: Part.NULL
 
   override val isHierarchical: Boolean = false
   override val isRelative: Boolean = scheme == null

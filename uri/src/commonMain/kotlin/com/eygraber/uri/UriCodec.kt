@@ -18,6 +18,19 @@
 package com.eygraber.uri
 
 public object UriCodec {
+  private val lowercaseAsciiAlphaRange = 'a'..'z'
+  private val lowercaseHexRange = 'a'..'f'
+  private val uppercaseAsciiAlphaRange = 'A'..'Z'
+  private val uppercaseHexRange = 'A'..'F'
+  private val digitAsciiRange = '0'..'9'
+  private val defaultAllowedSet = setOf('_', '-', '!', '.', '~', '\'', '(', ')', '*')
+  private val hexDigits = charArrayOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F')
+
+  /**
+   * Character to be output when there's an error decoding an input.
+   */
+  private const val INVALID_INPUT_CHARACTER = '\ufffd'
+
   /**
    * Encodes characters in the given string as '%'-escaped octets
    * using the UTF-8 scheme. Leaves letters ("A-Z", "a-z"), numbers
@@ -28,7 +41,7 @@ public object UriCodec {
    * @return an encoded version of s suitable for use as a URI component,
    *  or null if s is null
    */
-  public fun encodeOrNull(s: String?): String? = if(s == null) null else encode(s, null)
+  public fun encodeOrNull(s: String?): String? = s?.let { encode(s, null) }
 
   /**
    * Encodes characters in the given string as '%'-escaped octets
@@ -43,7 +56,7 @@ public object UriCodec {
    * @return an encoded version of s suitable for use as a URI component,
    *  or null if s is null
    */
-  public fun encodeOrNull(s: String?, allow: String?): String? = if(s == null) null else encode(s, allow)
+  public fun encodeOrNull(s: String?, allow: String?): String? = s?.let { encode(s, allow) }
 
   /**
    * Encodes characters in the given string as '%'-escaped octets
@@ -178,7 +191,7 @@ public object UriCodec {
     s: String?,
     convertPlus: Boolean = false,
     throwOnFailure: Boolean = false
-  ): String? = if(s == null) null else decode(s, convertPlus, throwOnFailure)
+  ): String? = s?.let { decode(s, convertPlus, throwOnFailure) }
 
   /**
    * Decodes '%'-escaped octets in the given string using the UTF-8 scheme.
@@ -213,7 +226,7 @@ public object UriCodec {
           '%' -> {
             // Expect two characters representing a number in hex.
             var hexValue: Byte = 0
-            for(@Suppress("UnusedPrivateProperty") j in 0..1) {
+            repeat(2) {
               val nextC = try {
                 getNextCharacter(s, i, s.length, name = null)
               }
@@ -340,17 +353,4 @@ public object UriCodec {
     in uppercaseHexRange -> 10 + c.code - 'A'.code
     else -> -1
   }
-
-  private val lowercaseAsciiAlphaRange = 'a'..'z'
-  private val lowercaseHexRange = 'a'..'f'
-  private val uppercaseAsciiAlphaRange = 'A'..'Z'
-  private val uppercaseHexRange = 'A'..'F'
-  private val digitAsciiRange = '0'..'9'
-  private val defaultAllowedSet = setOf('_', '-', '!', '.', '~', '\'', '(', ')', '*')
-  private val hexDigits = charArrayOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F')
-
-  /**
-   * Character to be output when there's an error decoding an input.
-   */
-  private const val INVALID_INPUT_CHARACTER = '\ufffd'
 }

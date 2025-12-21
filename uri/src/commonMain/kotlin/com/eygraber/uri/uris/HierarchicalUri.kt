@@ -23,15 +23,15 @@ import com.eygraber.uri.parts.PathPart
 
 internal class HierarchicalUri internal constructor(
   override val scheme: String?,
-  _authorityPart: Part?,
-  _pathPart: PathPart?,
-  _queryPart: Part?,
-  _fragmentPart: Part?
+  paramAuthorityPart: Part?,
+  paramPathPart: PathPart?,
+  paramQueryPart: Part?,
+  paramFragmentPart: Part?
 ) : AbstractHierarchicalUri() {
-  private val authorityPart = Part.nonNull(_authorityPart)
-  private val pathPart = _pathPart ?: PathPart.NULL
-  private val queryPart = Part.nonNull(_queryPart)
-  private val fragmentPart = Part.nonNull(_fragmentPart)
+  private val authorityPart = Part.nonNull(paramAuthorityPart)
+  private val pathPart = paramPathPart ?: PathPart.NULL
+  private val queryPart = Part.nonNull(paramQueryPart)
+  private val fragmentPart = Part.nonNull(paramFragmentPart)
 
   override val isHierarchical: Boolean = true
   override val isRelative: Boolean = scheme == null

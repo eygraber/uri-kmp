@@ -343,9 +343,11 @@ class UriTest {
   @Test
   fun testGetQueryParameter() {
     val nestedUrl = "http://crazybob.org/?a=1&b=2"
-    val uri = Uri.parse("http://test/").buildUpon()
+    val uri = Uri.parse("http://test/")
+      .buildUpon()
       .appendQueryParameter("foo", "bar")
-      .appendQueryParameter("nested", nestedUrl).build()
+      .appendQueryParameter("nested", nestedUrl)
+      .build()
     assertEquals(nestedUrl, uri.getQueryParameter("nested"))
     assertEquals(nestedUrl, uri.getQueryParameters("nested")[0])
   }
@@ -355,9 +357,11 @@ class UriTest {
     // This was a workaround for a bug where getQueryParameter called
     // getQuery() instead of getEncodedQuery().
     val nestedUrl = "http://crazybob.org/?a=1&b=2"
-    val uri = Uri.parse("http://test/").buildUpon()
+    val uri = Uri.parse("http://test/")
+      .buildUpon()
       .appendQueryParameter("foo", "bar")
-      .appendQueryParameter("nested", UriCodec.encode(nestedUrl)).build()
+      .appendQueryParameter("nested", UriCodec.encode(nestedUrl))
+      .build()
     assertEquals(nestedUrl, UriCodec.decodeOrNull(uri.getQueryParameter("nested")))
     assertEquals(nestedUrl, UriCodec.decode(uri.getQueryParameters("nested")[0]))
   }
@@ -544,8 +548,11 @@ class UriTest {
 
   @Test
   fun testClearQueryParameters() {
-    val uri = Uri.parse("http://www.google.com/?a=x&b=y&c=z").buildUpon()
-      .clearQuery().appendQueryParameter("foo", "bar").build()
+    val uri = Uri.parse("http://www.google.com/?a=x&b=y&c=z")
+      .buildUpon()
+      .clearQuery()
+      .appendQueryParameter("foo", "bar")
+      .build()
     val names = uri.getQueryParameterNames()
     assertEquals(1, names.size)
     assertEquals("foo", names.iterator().next())

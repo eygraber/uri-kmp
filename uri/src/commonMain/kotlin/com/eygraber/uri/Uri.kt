@@ -551,6 +551,8 @@ public interface Uri : Comparable<Uri> {
       opaquePart = null
       val encodedKey = UriCodec.encode(key, null)
       val encodedValue = UriCodec.encodeOrNull(value, null)
+
+      @Suppress("NullableToStringCall")
       val encodedParameter = "$encodedKey=$encodedValue"
       if(query == null) {
         query = Part.fromEncoded(encodedParameter)
