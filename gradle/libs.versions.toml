@@ -19,7 +19,7 @@ kotlinx-serialization = "1.9.0"
 
 ktlint = "1.8.0"
 
-publish = "0.35.0"
+publish = "0.36.0"
 
 [plugins]
 conventions = { id = "com.eygraber.conventions", version.ref = "conventions" }
