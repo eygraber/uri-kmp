@@ -1,13 +1,13 @@
 [versions]
 android-cacheFix-plugin = "3.0.3"
 
-android-plugin = "8.13.2"
+android-plugin = "9.0.0"
 
 android-sdk-compile = "33"
 android-sdk-min = "21"
 android-sdk-target = "33"
 
-conventions = "0.0.94"
+conventions = "0.0.97"
 
 detekt = "2.0.0-alpha.1"
 detektEygraber = "1.0.14"
@@ -19,7 +19,7 @@ kotlinx-serialization = "1.9.0"
 
 ktlint = "1.8.0"
 
-publish = "0.35.0"
+publish = "0.36.0"
 
 [plugins]
 conventions = { id = "com.eygraber.conventions", version.ref = "conventions" }
