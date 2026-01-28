@@ -23,6 +23,7 @@ import com.eygraber.uri.uris.HierarchicalUri
 import com.eygraber.uri.uris.OpaqueUri
 import com.eygraber.uri.uris.StringUri
 import kotlinx.serialization.Serializable
+import com.eygraber.uri.Builder as IBuilder
 
 @Serializable(with = UriSerializer::class)
 public interface Uri : Comparable<Uri> {
@@ -384,7 +385,7 @@ public interface Uri : Comparable<Uri> {
   /**
    * Constructs a new builder, copying the attributes from this Uri.
    */
-  public fun buildUpon(): com.eygraber.uri.Builder
+  public fun buildUpon(): IBuilder
 
   /**
    * Helper class for building or manipulating URI references. Not safe for
@@ -406,7 +407,7 @@ public interface Uri : Comparable<Uri> {
    *
    * Use [Uri.buildUpon] to obtain a builder representing an existing URI.
    */
-  public class Builder : com.eygraber.uri.Builder {
+  public class Builder : IBuilder {
     private var scheme: String? = null
     private var opaquePart: Part? = null
     private var authority: Part? = null
