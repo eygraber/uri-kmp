@@ -9,8 +9,7 @@ android-sdk-target = "33"
 
 conventions = "0.0.98"
 
-detekt = "2.0.0-alpha.1"
-detektEygraber = "1.0.14"
+detekt = "2.0.0-alpha.2"
 
 dokka = "2.1.0"
 
@@ -18,6 +17,7 @@ kotlin = "2.3.0"
 kotlinx-serialization = "1.10.0"
 
 ktlint = "1.8.0"
+ktlintCustomRules = "0.1.1"
 
 publish = "0.36.0"
 
@@ -33,11 +33,13 @@ buildscript-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", versio
 buildscript-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 buildscript-publish = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "publish" }
 
-detektEygraber-formatting = { module = "com.eygraber.detekt.rules:formatting", version.ref = "detektEygraber" }
-detektEygraber-style = { module = "com.eygraber.detekt.rules:style", version.ref = "detektEygraber" }
-
 # not actually used; just here so renovate picks it up
+# noinspection UnusedVersionCatalogEntry
 ktlint = { module = "com.pinterest.ktlint:ktlint-bom", version.ref = "ktlint" }
+
+# just here so renovate picks it up
+# noinspection UnusedVersionCatalogEntry
+ktlintCustomRules = { module = "com.eygraber.ktlint.rules:ktlint-rules", version.ref = "ktlintCustomRules" }
 
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }

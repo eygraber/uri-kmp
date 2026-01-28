@@ -275,7 +275,7 @@ public object UriCodec {
 
   private class ByteBuffer(private val size: Int) {
     private val buffer by lazy {
-      ByteArray(size) { 0 }
+      ByteArray(size)
     }
 
     var writePosition = 0

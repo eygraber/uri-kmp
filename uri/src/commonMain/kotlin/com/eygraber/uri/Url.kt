@@ -4,6 +4,7 @@ import com.eygraber.uri.parts.Part
 import com.eygraber.uri.uris.OpaqueUri
 import com.eygraber.uri.uris.StringUri
 import kotlinx.serialization.Serializable
+import com.eygraber.uri.Builder as IBuilder
 
 @Serializable(with = UrlSerializer::class)
 public class Url internal constructor(
@@ -154,9 +155,9 @@ public class Url internal constructor(
    */
   public class Builder(
     private val uriBuilder: Uri.Builder = Uri.Builder()
-  ) : UrlBuilder, com.eygraber.uri.Builder by uriBuilder {
+  ) : UrlBuilder, IBuilder by uriBuilder {
     @Deprecated("Use scheme(String)", level = DeprecationLevel.ERROR)
-    override fun scheme(scheme: String?): com.eygraber.uri.Builder = apply {
+    override fun scheme(scheme: String?): IBuilder = apply {
       uriBuilder.scheme(scheme)
     }
 
@@ -170,7 +171,7 @@ public class Url internal constructor(
     }
 
     @Deprecated("Use opaquePart(String)", level = DeprecationLevel.ERROR)
-    override fun opaquePart(opaquePart: String?): com.eygraber.uri.Builder = apply {
+    override fun opaquePart(opaquePart: String?): IBuilder = apply {
       uriBuilder.opaquePart(opaquePart)
     }
 
@@ -184,7 +185,7 @@ public class Url internal constructor(
     }
 
     @Deprecated("Use encodedOpaquePart(String)", level = DeprecationLevel.ERROR)
-    override fun encodedOpaquePart(opaquePart: String?): com.eygraber.uri.Builder = apply {
+    override fun encodedOpaquePart(opaquePart: String?): IBuilder = apply {
       uriBuilder.encodedOpaquePart(opaquePart)
     }
 
@@ -198,7 +199,7 @@ public class Url internal constructor(
     }
 
     @Deprecated("Use authority(String)", level = DeprecationLevel.ERROR)
-    override fun authority(authority: String?): com.eygraber.uri.Builder = apply {
+    override fun authority(authority: String?): IBuilder = apply {
       uriBuilder.authority(authority)
     }
 
@@ -210,7 +211,7 @@ public class Url internal constructor(
     }
 
     @Deprecated("Use encodedAuthority(String)", level = DeprecationLevel.ERROR)
-    override fun encodedAuthority(authority: String?): com.eygraber.uri.Builder = apply {
+    override fun encodedAuthority(authority: String?): IBuilder = apply {
       uriBuilder.encodedAuthority(authority)
     }
 
