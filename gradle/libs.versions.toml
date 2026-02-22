@@ -13,7 +13,7 @@ detekt = "2.0.0-alpha.2"
 
 dokka = "2.1.0"
 
-kotlin = "2.3.0"
+kotlin = "2.3.10"
 kotlinx-serialization = "1.10.0"
 
 ktlint = "1.8.0"
