@@ -9,7 +9,7 @@ android-sdk-target = "33"
 
 conventions = "0.0.100"
 
-detekt = "2.0.0-alpha.3"
+detekt = "2.0.0-alpha.4"
 
 dokka = "2.2.0"
 
