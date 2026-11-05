@@ -11,7 +11,7 @@ conventions = "0.0.104"
 
 detekt = "2.0.0-alpha.6"
 
-dokka = "2.2.0"
+dokka = "2.3.0"
 
 kotlin = "2.4.21"
 kotlinx-serialization = "1.12.0"
