@@ -44,7 +44,7 @@ ktlintCustomRules = { module = "com.eygraber.ktlint.rules:ktlint-rules", version
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 
-kotlinx-wasm-browser = "org.jetbrains.kotlinx:kotlinx-browser:0.6.0"
+kotlinx-wasm-browser = "org.jetbrains.kotlinx:kotlinx-browser:0.6.1"
 
 test-android-junit = "androidx.test.ext:junit:1.3.0"
 test-android-robolectric = "org.robolectric:robolectric:4.18.1"
